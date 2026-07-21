@@ -1,0 +1,215 @@
+// Prisma schema for the Sierra Leone Disaster Early Warning System.
+// Learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+// The 16 districts of Sierra Leone. Static reference + geospatial + baseline
+// vulnerability data seeded from prisma/seed.ts (see lib/districts.ts).
+model District {
+  id                 String   @id
+  name               String
+  province           String
+  capital            String
+  areaKm2            Float
+  population         Int
+  lat                Float
+  lon                Float
+  coastal            Boolean  @default(false)
+  riverine           Boolean  @default(false)
+  landslideRisk      String // "low" | "medium" | "high"
+  vulnerabilityIndex Float // 0-1 baseline composite (poverty/health-access/infra proxy)
+  primaryCrops       String // JSON string array
+  livestockPresent   Boolean  @default(true)
+  elevation          Float? // meters, fetched once via Open-Meteo Elevation API
+
+  hazardSignals HazardSignal[]
+  riskScores    RiskScore[]
+  alerts        Alert[]
+  reports       CitizenReport[]
+  disasters     HistoricalDisaster[]
+  settlements   Settlement[]
+
+  @@map("districts")
+}
+
+// City / Town / Area drill-down beneath each district. Real OpenStreetMap
+// place data (see lib/settlements.ts + scripts/build-settlements.mjs).
+model Settlement {
+  id         String   @id
+  name       String
+  type       String // "CITY" | "TOWN" | "AREA"
+  districtId String
+  district   District @relation(fields: [districtId], references: [id])
+  lat        Float
+  lon        Float
+  population Int?
+  elevation  Float?
+
+  riskScores SettlementRiskScore[]
+  reports    CitizenReport[]
+  alerts     Alert[]
+
+  @@index([districtId])
+  @@map("settlements")
+}
+
+// One hazard category per domain. Maps to how each competitor system
+// (GDACS, PDC DisasterAWARE, INFORM, FEWS NET) segments multi-hazard data.
+enum HazardCategory {
+  EARTHQUAKE
+  TSUNAMI
+  LANDSLIDE
+  FLOOD_RIVER
+  FLOOD_COASTAL
+  DROUGHT
+  WILDFIRE
+  STORM_WIND
+  AIR_QUALITY
+  EPIDEMIC_HUMAN
+  EPIDEMIC_ANIMAL
+  CROP_PEST_DISEASE
+  MARINE_HAZARD
+}
+
+enum RiskLevel {
+  GREEN
+  YELLOW
+  ORANGE
+  RED
+}
+
+// Raw normalized observations pulled from live sources by lib/sources/*.
+// Each ingestion run appends rows; the risk engine reads the freshest
+// window per (district, category) to compute a RiskScore.
+model HazardSignal {
+  id         String         @id @default(cuid())
+  districtId String
+  district   District       @relation(fields: [districtId], references: [id])
+  category   HazardCategory
+  source     String // "USGS" | "GDACS" | "OPEN_METEO" | "FIRMS" | "RELIEFWEB" | "MODEL"
+  value      Float // normalized 0-100 intensity contribution
+  unit       String?
+  summary    String?
+  metadata   String? // JSON blob: raw magnitude, url, coordinates, etc.
+  observedAt DateTime
+  fetchedAt  DateTime       @default(now())
+
+  @@index([districtId, category, fetchedAt])
+  @@map("hazard_signals")
+}
+
+// Append-only risk score log. The dashboard reads the latest row per
+// (district, category); history powers trend sparklines.
+model RiskScore {
+  id         String         @id @default(cuid())
+  districtId String
+  district   District       @relation(fields: [districtId], references: [id])
+  category   HazardCategory
+  score      Float // 0-100
+  level      RiskLevel
+  drivers    String // JSON: { hazard, exposure, vulnerability, notes[] }
+  computedAt DateTime       @default(now())
+
+  @@index([districtId, category, computedAt])
+  @@map("risk_scores")
+}
+
+// Settlement-level risk log — computed only for the hazards that have a
+// meaningful point-level signal (flood + drought, the accuracy-focused
+// categories). Every other hazard category is inherited directly from the
+// parent district at render time rather than duplicated per settlement.
+model SettlementRiskScore {
+  id           String         @id @default(cuid())
+  settlementId String
+  settlement   Settlement     @relation(fields: [settlementId], references: [id])
+  category     HazardCategory
+  score        Float
+  level        RiskLevel
+  drivers      String
+  computedAt   DateTime       @default(now())
+
+  @@index([settlementId, category, computedAt])
+  @@map("settlement_risk_scores")
+}
+
+model Alert {
+  id           String         @id @default(cuid())
+  districtId   String
+  district     District       @relation(fields: [districtId], references: [id])
+  settlementId String?
+  settlement   Settlement?    @relation(fields: [settlementId], references: [id])
+  category     HazardCategory
+  level        RiskLevel
+  title        String
+  message      String
+  source       String
+  issuedAt     DateTime       @default(now())
+  active       Boolean        @default(true)
+
+  @@index([districtId, active])
+  @@map("alerts")
+}
+
+// Curated archive of documented Sierra Leone disasters (EM-DAT / ReliefWeb /
+// WOAH style historical record) used for the timeline and to contextualize
+// current risk against precedent.
+model HistoricalDisaster {
+  id          String         @id @default(cuid())
+  districtId  String?
+  district    District?      @relation(fields: [districtId], references: [id])
+  category    HazardCategory
+  title       String
+  description String
+  date        DateTime
+  deaths      Int?
+  affected    Int?
+  source      String
+  sourceUrl   String?
+
+  @@map("historical_disasters")
+}
+
+enum ReportStatus {
+  PENDING
+  VERIFIED
+  DISMISSED
+}
+
+// Ushahidi-style citizen/community incident reporting.
+model CitizenReport {
+  id           String         @id @default(cuid())
+  districtId   String
+  district     District       @relation(fields: [districtId], references: [id])
+  settlementId String?
+  settlement   Settlement?    @relation(fields: [settlementId], references: [id])
+  category     HazardCategory
+  reporterName String?
+  contact      String?
+  description  String
+  lat          Float?
+  lon          Float?
+  status       ReportStatus   @default(PENDING)
+  createdAt    DateTime       @default(now())
+
+  @@map("citizen_reports")
+}
+
+// Audit trail for each ingestion pass across all external sources.
+model IngestionRun {
+  id           String    @id @default(cuid())
+  source       String
+  status       String // "success" | "partial" | "error"
+  itemsFetched Int       @default(0)
+  message      String?
+  startedAt    DateTime  @default(now())
+  finishedAt   DateTime?
+
+  @@map("ingestion_runs")
+}

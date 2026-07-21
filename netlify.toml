@@ -1,0 +1,12 @@
+[build]
+  command = "npm run netlify-build"
+  publish = ".next"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[functions]
+  included_files = ["dev.db"]
+
+[build.environment]
+  DATABASE_URL = "file:./dev.db"

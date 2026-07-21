@@ -1,0 +1,3476 @@
+[
+  {
+    "id": "baiima-bo",
+    "name": "Baiima",
+    "type": "TOWN",
+    "districtId": "bo",
+    "lat": 8.109,
+    "lon": -11.8489,
+    "population": null
+  },
+  {
+    "id": "bawomahun-bo",
+    "name": "Bawomahun",
+    "type": "AREA",
+    "districtId": "bo",
+    "lat": 7.9492,
+    "lon": -12.0719,
+    "population": null
+  },
+  {
+    "id": "blama-bo",
+    "name": "Blama",
+    "type": "AREA",
+    "districtId": "bo",
+    "lat": 7.835,
+    "lon": -12.0754,
+    "population": null
+  },
+  {
+    "id": "bo-bo",
+    "name": "Bo",
+    "type": "CITY",
+    "districtId": "bo",
+    "lat": 7.9621,
+    "lon": -11.7366,
+    "population": null
+  },
+  {
+    "id": "bumbeworo-bo",
+    "name": "Bumbeworo",
+    "type": "AREA",
+    "districtId": "bo",
+    "lat": 7.9631,
+    "lon": -12.0874,
+    "population": null
+  },
+  {
+    "id": "bumpe-bo",
+    "name": "Bumpe",
+    "type": "TOWN",
+    "districtId": "bo",
+    "lat": 7.8914,
+    "lon": -11.9045,
+    "population": null
+  },
+  {
+    "id": "duh-duh-bo",
+    "name": "Duh Duh",
+    "type": "AREA",
+    "districtId": "bo",
+    "lat": 7.8313,
+    "lon": -12.0546,
+    "population": null
+  },
+  {
+    "id": "fulaninahun-bo",
+    "name": "Fulaninahun",
+    "type": "AREA",
+    "districtId": "bo",
+    "lat": 7.9061,
+    "lon": -12.0451,
+    "population": null
+  },
+  {
+    "id": "gbodumma-bo",
+    "name": "Gbodumma",
+    "type": "AREA",
+    "districtId": "bo",
+    "lat": 8.0264,
+    "lon": -12.0404,
+    "population": null
+  },
+  {
+    "id": "gerihun-bo",
+    "name": "Gerihun",
+    "type": "TOWN",
+    "districtId": "bo",
+    "lat": 7.9309,
+    "lon": -11.5783,
+    "population": null
+  },
+  {
+    "id": "jayahun-bo",
+    "name": "Jayahun",
+    "type": "AREA",
+    "districtId": "bo",
+    "lat": 7.9809,
+    "lon": -12.0957,
+    "population": null
+  },
+  {
+    "id": "kpetowoma-bo",
+    "name": "Kpetowoma",
+    "type": "AREA",
+    "districtId": "bo",
+    "lat": 7.8771,
+    "lon": -12.1255,
+    "population": null
+  },
+  {
+    "id": "magihun-bo",
+    "name": "Magihun",
+    "type": "AREA",
+    "districtId": "bo",
+    "lat": 7.8486,
+    "lon": -12.1232,
+    "population": null
+  },
+  {
+    "id": "mano-bo",
+    "name": "Mano",
+    "type": "AREA",
+    "districtId": "bo",
+    "lat": 8.0385,
+    "lon": -12.0918,
+    "population": null
+  },
+  {
+    "id": "matagema-bo",
+    "name": "Matagema",
+    "type": "AREA",
+    "districtId": "bo",
+    "lat": 7.8709,
+    "lon": -12.0916,
+    "population": null
+  },
+  {
+    "id": "mogiba-bo",
+    "name": "Mogiba",
+    "type": "AREA",
+    "districtId": "bo",
+    "lat": 7.9292,
+    "lon": -12.0284,
+    "population": null
+  },
+  {
+    "id": "molunia-bo",
+    "name": "Molunia",
+    "type": "AREA",
+    "districtId": "bo",
+    "lat": 7.8734,
+    "lon": -12.0639,
+    "population": null
+  },
+  {
+    "id": "mosongo-bo",
+    "name": "Mosongo",
+    "type": "AREA",
+    "districtId": "bo",
+    "lat": 8.1109,
+    "lon": -12.0572,
+    "population": null
+  },
+  {
+    "id": "naiaguehun-bo",
+    "name": "Naiaguehun",
+    "type": "AREA",
+    "districtId": "bo",
+    "lat": 7.9676,
+    "lon": -12.0247,
+    "population": null
+  },
+  {
+    "id": "periwahun-bo",
+    "name": "Periwahun",
+    "type": "AREA",
+    "districtId": "bo",
+    "lat": 8.0933,
+    "lon": -12.0599,
+    "population": null
+  },
+  {
+    "id": "petemo-bo",
+    "name": "Petemo",
+    "type": "AREA",
+    "districtId": "bo",
+    "lat": 7.9184,
+    "lon": -12.0812,
+    "population": null
+  },
+  {
+    "id": "senehun-bo",
+    "name": "Senehun",
+    "type": "AREA",
+    "districtId": "bo",
+    "lat": 8.1687,
+    "lon": -11.9485,
+    "population": null
+  },
+  {
+    "id": "serabu-bo",
+    "name": "Serabu",
+    "type": "TOWN",
+    "districtId": "bo",
+    "lat": 7.791,
+    "lon": -12.0518,
+    "population": null
+  },
+  {
+    "id": "sumbuya-bo",
+    "name": "Sumbuya",
+    "type": "TOWN",
+    "districtId": "bo",
+    "lat": 7.6492,
+    "lon": -11.9624,
+    "population": null
+  },
+  {
+    "id": "taninahun-bo",
+    "name": "Taninahun",
+    "type": "AREA",
+    "districtId": "bo",
+    "lat": 7.8912,
+    "lon": -12.0863,
+    "population": null
+  },
+  {
+    "id": "tikonko-bo",
+    "name": "Tikonko",
+    "type": "TOWN",
+    "districtId": "bo",
+    "lat": 7.881,
+    "lon": -11.784,
+    "population": null
+  },
+  {
+    "id": "walihun-konde-bo",
+    "name": "Walihun konde",
+    "type": "AREA",
+    "districtId": "bo",
+    "lat": 7.7671,
+    "lon": -12.0885,
+    "population": null
+  },
+  {
+    "id": "binkolo-bombali",
+    "name": "Binkolo",
+    "type": "TOWN",
+    "districtId": "bombali",
+    "lat": 8.9533,
+    "lon": -11.9779,
+    "population": null
+  },
+  {
+    "id": "kamabai-bombali",
+    "name": "Kamabai",
+    "type": "TOWN",
+    "districtId": "bombali",
+    "lat": 9.1493,
+    "lon": -11.9598,
+    "population": null
+  },
+  {
+    "id": "macca-bombali",
+    "name": "Macca",
+    "type": "AREA",
+    "districtId": "bombali",
+    "lat": 8.7201,
+    "lon": -12.2857,
+    "population": null
+  },
+  {
+    "id": "magbingbi-bombali",
+    "name": "Magbingbi",
+    "type": "AREA",
+    "districtId": "bombali",
+    "lat": 8.8748,
+    "lon": -12.1063,
+    "population": null
+  },
+  {
+    "id": "makama-bombali",
+    "name": "Makama",
+    "type": "AREA",
+    "districtId": "bombali",
+    "lat": 8.8625,
+    "lon": -12.0555,
+    "population": null
+  },
+  {
+    "id": "makari-bombali",
+    "name": "Makari",
+    "type": "AREA",
+    "districtId": "bombali",
+    "lat": 8.8676,
+    "lon": -12.1256,
+    "population": null
+  },
+  {
+    "id": "makeni-bombali",
+    "name": "Makeni",
+    "type": "CITY",
+    "districtId": "bombali",
+    "lat": 8.8882,
+    "lon": -12.0442,
+    "population": null
+  },
+  {
+    "id": "makneah-ii-bombali",
+    "name": "Makneah II",
+    "type": "AREA",
+    "districtId": "bombali",
+    "lat": 8.8348,
+    "lon": -12.0403,
+    "population": null
+  },
+  {
+    "id": "makombo-bombali",
+    "name": "Makombo",
+    "type": "AREA",
+    "districtId": "bombali",
+    "lat": 8.7294,
+    "lon": -12.3002,
+    "population": null
+  },
+  {
+    "id": "makump-bana-bombali",
+    "name": "Makump Bana",
+    "type": "AREA",
+    "districtId": "bombali",
+    "lat": 8.8077,
+    "lon": -12.0401,
+    "population": null
+  },
+  {
+    "id": "makump-roron-village-bombali",
+    "name": "Makump Roron Village",
+    "type": "AREA",
+    "districtId": "bombali",
+    "lat": 8.8186,
+    "lon": -12.0706,
+    "population": null
+  },
+  {
+    "id": "mamoru-bombali",
+    "name": "Mamoru",
+    "type": "AREA",
+    "districtId": "bombali",
+    "lat": 8.8103,
+    "lon": -12.0576,
+    "population": null
+  },
+  {
+    "id": "masathie-bombali",
+    "name": "Masathie",
+    "type": "AREA",
+    "districtId": "bombali",
+    "lat": 8.7789,
+    "lon": -12.051,
+    "population": null
+  },
+  {
+    "id": "maserry-bombali",
+    "name": "Maserry",
+    "type": "AREA",
+    "districtId": "bombali",
+    "lat": 8.7412,
+    "lon": -12.2708,
+    "population": null
+  },
+  {
+    "id": "masheku-bombali",
+    "name": "Masheku",
+    "type": "AREA",
+    "districtId": "bombali",
+    "lat": 8.6664,
+    "lon": -12.2719,
+    "population": null
+  },
+  {
+    "id": "matotoka-bombali",
+    "name": "Matotoka",
+    "type": "AREA",
+    "districtId": "bombali",
+    "lat": 8.7847,
+    "lon": -12.0721,
+    "population": null
+  },
+  {
+    "id": "mayamie-bombali",
+    "name": "Mayamie",
+    "type": "AREA",
+    "districtId": "bombali",
+    "lat": 8.7124,
+    "lon": -12.2947,
+    "population": null
+  },
+  {
+    "id": "mayendeh-bombali",
+    "name": "Mayendeh",
+    "type": "AREA",
+    "districtId": "bombali",
+    "lat": 8.8073,
+    "lon": -12.0683,
+    "population": null
+  },
+  {
+    "id": "pate-bana-masimbo-bombali",
+    "name": "Pate Bana Masimbo",
+    "type": "AREA",
+    "districtId": "bombali",
+    "lat": 8.8605,
+    "lon": -12.0754,
+    "population": null
+  },
+  {
+    "id": "rochain-bombali",
+    "name": "Rochain",
+    "type": "AREA",
+    "districtId": "bombali",
+    "lat": 8.79,
+    "lon": -12.0611,
+    "population": null
+  },
+  {
+    "id": "rochen-bombali",
+    "name": "Rochen",
+    "type": "AREA",
+    "districtId": "bombali",
+    "lat": 8.6668,
+    "lon": -12.2842,
+    "population": null
+  },
+  {
+    "id": "rotonka-bombali",
+    "name": "Rotonka",
+    "type": "AREA",
+    "districtId": "bombali",
+    "lat": 8.7157,
+    "lon": -12.2398,
+    "population": null
+  },
+  {
+    "id": "yall-bombali",
+    "name": "Yall",
+    "type": "AREA",
+    "districtId": "bombali",
+    "lat": 8.6543,
+    "lon": -12.2871,
+    "population": null
+  },
+  {
+    "id": "bachalo-bonthe",
+    "name": "Bachalo",
+    "type": "AREA",
+    "districtId": "bonthe",
+    "lat": 7.5749,
+    "lon": -12.9316,
+    "population": null
+  },
+  {
+    "id": "benkeh-bonthe",
+    "name": "Benkeh",
+    "type": "AREA",
+    "districtId": "bonthe",
+    "lat": 7.8285,
+    "lon": -12.5358,
+    "population": null
+  },
+  {
+    "id": "bompiya-bonthe",
+    "name": "Bompiya",
+    "type": "AREA",
+    "districtId": "bonthe",
+    "lat": 7.6973,
+    "lon": -12.5392,
+    "population": null
+  },
+  {
+    "id": "bonthe-bonthe",
+    "name": "Bonthe",
+    "type": "TOWN",
+    "districtId": "bonthe",
+    "lat": 7.5273,
+    "lon": -12.502,
+    "population": 10206
+  },
+  {
+    "id": "bumpetoke-bonthe",
+    "name": "Bumpetoke",
+    "type": "AREA",
+    "districtId": "bonthe",
+    "lat": 7.8125,
+    "lon": -12.8456,
+    "population": null
+  },
+  {
+    "id": "gbangbaia-bonthe",
+    "name": "Gbangbaia",
+    "type": "AREA",
+    "districtId": "bonthe",
+    "lat": 7.7835,
+    "lon": -12.3655,
+    "population": null
+  },
+  {
+    "id": "gbangbatok-bonthe",
+    "name": "Gbangbatok",
+    "type": "TOWN",
+    "districtId": "bonthe",
+    "lat": 7.8064,
+    "lon": -12.3836,
+    "population": null
+  },
+  {
+    "id": "lago-junction-bonthe",
+    "name": "Lago Junction",
+    "type": "AREA",
+    "districtId": "bonthe",
+    "lat": 7.8165,
+    "lon": -12.3201,
+    "population": null
+  },
+  {
+    "id": "manjama-bonthe",
+    "name": "Manjama",
+    "type": "AREA",
+    "districtId": "bonthe",
+    "lat": 7.7835,
+    "lon": -12.6906,
+    "population": null
+  },
+  {
+    "id": "mano-bonthe",
+    "name": "Mano",
+    "type": "AREA",
+    "districtId": "bonthe",
+    "lat": 7.8419,
+    "lon": -12.8718,
+    "population": null
+  },
+  {
+    "id": "matagalemah-bonthe",
+    "name": "Matagalemah",
+    "type": "AREA",
+    "districtId": "bonthe",
+    "lat": 7.8143,
+    "lon": -12.2929,
+    "population": null
+  },
+  {
+    "id": "mattru-jong-bonthe",
+    "name": "Mattru Jong",
+    "type": "TOWN",
+    "districtId": "bonthe",
+    "lat": 7.6071,
+    "lon": -12.18,
+    "population": null
+  },
+  {
+    "id": "mobeabo-bonthe",
+    "name": "Mobeabo",
+    "type": "AREA",
+    "districtId": "bonthe",
+    "lat": 7.827,
+    "lon": -12.5838,
+    "population": null
+  },
+  {
+    "id": "mogbomoh-bonthe",
+    "name": "Mogbomoh",
+    "type": "AREA",
+    "districtId": "bonthe",
+    "lat": 7.8022,
+    "lon": -12.359,
+    "population": null
+  },
+  {
+    "id": "mojajua-bonthe",
+    "name": "Mojajua",
+    "type": "AREA",
+    "districtId": "bonthe",
+    "lat": 7.704,
+    "lon": -12.5359,
+    "population": null
+  },
+  {
+    "id": "mokpanabom-bonthe",
+    "name": "Mokpanabom",
+    "type": "AREA",
+    "districtId": "bonthe",
+    "lat": 7.7677,
+    "lon": -12.7243,
+    "population": null
+  },
+  {
+    "id": "moribatown-bonthe",
+    "name": "Moribatown",
+    "type": "TOWN",
+    "districtId": "bonthe",
+    "lat": 7.7905,
+    "lon": -12.298,
+    "population": null
+  },
+  {
+    "id": "mosan-bonthe",
+    "name": "Mosan",
+    "type": "AREA",
+    "districtId": "bonthe",
+    "lat": 7.798,
+    "lon": -12.8031,
+    "population": null
+  },
+  {
+    "id": "nitti-bonthe",
+    "name": "Nitti",
+    "type": "AREA",
+    "districtId": "bonthe",
+    "lat": 7.7714,
+    "lon": -12.3929,
+    "population": null
+  },
+  {
+    "id": "nyandehun-bonthe",
+    "name": "Nyandehun",
+    "type": "AREA",
+    "districtId": "bonthe",
+    "lat": 7.6384,
+    "lon": -12.6148,
+    "population": null
+  },
+  {
+    "id": "sahan-bonthe",
+    "name": "Sahan",
+    "type": "AREA",
+    "districtId": "bonthe",
+    "lat": 7.7321,
+    "lon": -12.6855,
+    "population": null
+  },
+  {
+    "id": "sand-point-bonthe",
+    "name": "Sand Point",
+    "type": "AREA",
+    "districtId": "bonthe",
+    "lat": 7.6383,
+    "lon": -12.6854,
+    "population": null
+  },
+  {
+    "id": "tombay-bonthe",
+    "name": "Tombay",
+    "type": "AREA",
+    "districtId": "bonthe",
+    "lat": 7.6047,
+    "lon": -12.9065,
+    "population": null
+  },
+  {
+    "id": "tombeh-bonthe",
+    "name": "Tombeh",
+    "type": "AREA",
+    "districtId": "bonthe",
+    "lat": 7.7962,
+    "lon": -12.6738,
+    "population": null
+  },
+  {
+    "id": "badembaia-falaba",
+    "name": "Badembaia",
+    "type": "AREA",
+    "districtId": "falaba",
+    "lat": 9.9922,
+    "lon": -11.5284,
+    "population": null
+  },
+  {
+    "id": "bendugu-falaba",
+    "name": "Bendugu",
+    "type": "TOWN",
+    "districtId": "falaba",
+    "lat": 9.5337,
+    "lon": -10.957,
+    "population": null
+  },
+  {
+    "id": "bindi-falaba",
+    "name": "Bindi",
+    "type": "AREA",
+    "districtId": "falaba",
+    "lat": 9.9132,
+    "lon": -11.4459,
+    "population": null
+  },
+  {
+    "id": "biribaia-falaba",
+    "name": "Biribaia",
+    "type": "AREA",
+    "districtId": "falaba",
+    "lat": 9.8188,
+    "lon": -11.1732,
+    "population": null
+  },
+  {
+    "id": "bumbunkoro-falaba",
+    "name": "Bumbunkoro",
+    "type": "AREA",
+    "districtId": "falaba",
+    "lat": 9.2923,
+    "lon": -10.9888,
+    "population": null
+  },
+  {
+    "id": "falaba-falaba",
+    "name": "Falaba",
+    "type": "TOWN",
+    "districtId": "falaba",
+    "lat": 9.8555,
+    "lon": -11.3211,
+    "population": null
+  },
+  {
+    "id": "fulamansa-falaba",
+    "name": "Fulamansa",
+    "type": "AREA",
+    "districtId": "falaba",
+    "lat": 9.9745,
+    "lon": -11.4877,
+    "population": null
+  },
+  {
+    "id": "ganya-falaba",
+    "name": "Ganya",
+    "type": "AREA",
+    "districtId": "falaba",
+    "lat": 9.9342,
+    "lon": -11.2844,
+    "population": null
+  },
+  {
+    "id": "gberefi-falaba",
+    "name": "Gberefi",
+    "type": "AREA",
+    "districtId": "falaba",
+    "lat": 9.419,
+    "lon": -11.1451,
+    "population": null
+  },
+  {
+    "id": "gberia-fotumbu-falaba",
+    "name": "Gberia Fotumbu",
+    "type": "AREA",
+    "districtId": "falaba",
+    "lat": 9.8769,
+    "lon": -11.1672,
+    "population": null
+  },
+  {
+    "id": "gberia-timbako-falaba",
+    "name": "Gberia Timbako",
+    "type": "AREA",
+    "districtId": "falaba",
+    "lat": 9.7541,
+    "lon": -11.1943,
+    "population": null
+  },
+  {
+    "id": "keimadugu-falaba",
+    "name": "Keimadugu",
+    "type": "AREA",
+    "districtId": "falaba",
+    "lat": 9.2992,
+    "lon": -11.0659,
+    "population": null
+  },
+  {
+    "id": "koindu-kura-falaba",
+    "name": "Koindu Kura",
+    "type": "AREA",
+    "districtId": "falaba",
+    "lat": 9.8788,
+    "lon": -11.1626,
+    "population": null
+  },
+  {
+    "id": "kombile-falaba",
+    "name": "Kombile",
+    "type": "AREA",
+    "districtId": "falaba",
+    "lat": 9.6939,
+    "lon": -11.0963,
+    "population": null
+  },
+  {
+    "id": "limbaya-falaba",
+    "name": "Limbaya",
+    "type": "AREA",
+    "districtId": "falaba",
+    "lat": 9.8153,
+    "lon": -11.2632,
+    "population": null
+  },
+  {
+    "id": "nomokoya-falaba",
+    "name": "Nomokoya",
+    "type": "AREA",
+    "districtId": "falaba",
+    "lat": 9.9735,
+    "lon": -11.3993,
+    "population": null
+  },
+  {
+    "id": "sagalireh-falaba",
+    "name": "Sagalireh",
+    "type": "AREA",
+    "districtId": "falaba",
+    "lat": 9.9612,
+    "lon": -11.4759,
+    "population": null
+  },
+  {
+    "id": "santiga-falaba",
+    "name": "Santiga",
+    "type": "AREA",
+    "districtId": "falaba",
+    "lat": 9.7559,
+    "lon": -11.2709,
+    "population": null
+  },
+  {
+    "id": "semisedu-falaba",
+    "name": "Semisedu",
+    "type": "AREA",
+    "districtId": "falaba",
+    "lat": 9.4213,
+    "lon": -11.0698,
+    "population": null
+  },
+  {
+    "id": "serekolia-falaba",
+    "name": "Serekolia",
+    "type": "AREA",
+    "districtId": "falaba",
+    "lat": 9.5372,
+    "lon": -11.0775,
+    "population": null
+  },
+  {
+    "id": "simithia-falaba",
+    "name": "Simithia",
+    "type": "AREA",
+    "districtId": "falaba",
+    "lat": 9.9851,
+    "lon": -11.2876,
+    "population": null
+  },
+  {
+    "id": "sinekoro-falaba",
+    "name": "Sinekoro",
+    "type": "AREA",
+    "districtId": "falaba",
+    "lat": 9.4924,
+    "lon": -11.1209,
+    "population": null
+  },
+  {
+    "id": "sinkunia-falaba",
+    "name": "Sinkunia",
+    "type": "TOWN",
+    "districtId": "falaba",
+    "lat": 9.8633,
+    "lon": -11.4289,
+    "population": null
+  },
+  {
+    "id": "baima-kailahun",
+    "name": "Baima",
+    "type": "AREA",
+    "districtId": "kailahun",
+    "lat": 8.032,
+    "lon": -10.7671,
+    "population": null
+  },
+  {
+    "id": "baiwala-kailahun",
+    "name": "Baiwala",
+    "type": "AREA",
+    "districtId": "kailahun",
+    "lat": 7.9929,
+    "lon": -10.6486,
+    "population": null
+  },
+  {
+    "id": "bambara-kailahun",
+    "name": "Bambara",
+    "type": "AREA",
+    "districtId": "kailahun",
+    "lat": 8.5213,
+    "lon": -10.6643,
+    "population": null
+  },
+  {
+    "id": "bandajuma-kailahun",
+    "name": "Bandajuma",
+    "type": "AREA",
+    "districtId": "kailahun",
+    "lat": 8.3117,
+    "lon": -10.8489,
+    "population": null
+  },
+  {
+    "id": "baoma-kailahun",
+    "name": "Baoma",
+    "type": "TOWN",
+    "districtId": "kailahun",
+    "lat": 8.2748,
+    "lon": -10.6579,
+    "population": null
+  },
+  {
+    "id": "benduma-kailahun",
+    "name": "Benduma",
+    "type": "AREA",
+    "districtId": "kailahun",
+    "lat": 8.0031,
+    "lon": -10.8177,
+    "population": null
+  },
+  {
+    "id": "fobu-kailahun",
+    "name": "Fobu",
+    "type": "AREA",
+    "districtId": "kailahun",
+    "lat": 8.2339,
+    "lon": -10.6735,
+    "population": null
+  },
+  {
+    "id": "foindu-kailahun",
+    "name": "Foindu",
+    "type": "AREA",
+    "districtId": "kailahun",
+    "lat": 8.1227,
+    "lon": -10.7881,
+    "population": null
+  },
+  {
+    "id": "gbolabu-kailahun",
+    "name": "Gbolabu",
+    "type": "AREA",
+    "districtId": "kailahun",
+    "lat": 8.0628,
+    "lon": -10.6469,
+    "population": null
+  },
+  {
+    "id": "gbongbokoro-kailahun",
+    "name": "Gbongbokoro",
+    "type": "AREA",
+    "districtId": "kailahun",
+    "lat": 8.508,
+    "lon": -10.6319,
+    "population": null
+  },
+  {
+    "id": "gbonibu-wulo-kailahun",
+    "name": "Gbonibu Wulo",
+    "type": "AREA",
+    "districtId": "kailahun",
+    "lat": 8.0885,
+    "lon": -10.7862,
+    "population": null
+  },
+  {
+    "id": "giehun-kailahun",
+    "name": "Giehun",
+    "type": "AREA",
+    "districtId": "kailahun",
+    "lat": 8.2028,
+    "lon": -10.6469,
+    "population": null
+  },
+  {
+    "id": "kailahun-kailahun",
+    "name": "Kailahun",
+    "type": "TOWN",
+    "districtId": "kailahun",
+    "lat": 8.282,
+    "lon": -10.5552,
+    "population": 304
+  },
+  {
+    "id": "kangahun-kailahun",
+    "name": "Kangahun",
+    "type": "AREA",
+    "districtId": "kailahun",
+    "lat": 8.2871,
+    "lon": -10.8398,
+    "population": null
+  },
+  {
+    "id": "koindu-kailahun",
+    "name": "Koindu",
+    "type": "TOWN",
+    "districtId": "kailahun",
+    "lat": 8.4671,
+    "lon": -10.3312,
+    "population": 222
+  },
+  {
+    "id": "levuma-kailahun",
+    "name": "Levuma",
+    "type": "AREA",
+    "districtId": "kailahun",
+    "lat": 8.037,
+    "lon": -10.7227,
+    "population": null
+  },
+  {
+    "id": "malema-kailahun",
+    "name": "Malema",
+    "type": "AREA",
+    "districtId": "kailahun",
+    "lat": 8.356,
+    "lon": -10.8356,
+    "population": null
+  },
+  {
+    "id": "manowa-kailahun",
+    "name": "Manowa",
+    "type": "AREA",
+    "districtId": "kailahun",
+    "lat": 8.1726,
+    "lon": -10.749,
+    "population": null
+  },
+  {
+    "id": "manowa-junction-kailahun",
+    "name": "Manowa Junction",
+    "type": "AREA",
+    "districtId": "kailahun",
+    "lat": 8.1618,
+    "lon": -10.8515,
+    "population": null
+  },
+  {
+    "id": "mende-kailahun",
+    "name": "Mende",
+    "type": "AREA",
+    "districtId": "kailahun",
+    "lat": 8.1998,
+    "lon": -10.6923,
+    "population": null
+  },
+  {
+    "id": "mobai-kailahun",
+    "name": "Mobai",
+    "type": "AREA",
+    "districtId": "kailahun",
+    "lat": 7.9936,
+    "lon": -10.7537,
+    "population": null
+  },
+  {
+    "id": "moimandu-kailahun",
+    "name": "Moimandu",
+    "type": "AREA",
+    "districtId": "kailahun",
+    "lat": 8.3898,
+    "lon": -10.8321,
+    "population": null
+  },
+  {
+    "id": "pendembu-kailahun",
+    "name": "Pendembu",
+    "type": "TOWN",
+    "districtId": "kailahun",
+    "lat": 8.0987,
+    "lon": -10.6939,
+    "population": null
+  },
+  {
+    "id": "woroma-kailahun",
+    "name": "Woroma",
+    "type": "AREA",
+    "districtId": "kailahun",
+    "lat": 8.2566,
+    "lon": -10.7124,
+    "population": null
+  },
+  {
+    "id": "balensera-wharf-kambia",
+    "name": "Balensera Wharf",
+    "type": "AREA",
+    "districtId": "kambia",
+    "lat": 8.9138,
+    "lon": -13.1692,
+    "population": null
+  },
+  {
+    "id": "balie-kambia",
+    "name": "Balie",
+    "type": "AREA",
+    "districtId": "kambia",
+    "lat": 8.857,
+    "lon": -13.0922,
+    "population": null
+  },
+  {
+    "id": "gbomkupr-kambia",
+    "name": "Gbomkupr",
+    "type": "AREA",
+    "districtId": "kambia",
+    "lat": 8.8905,
+    "lon": -13.1216,
+    "population": null
+  },
+  {
+    "id": "kakonkie-kambia",
+    "name": "Kakonkie",
+    "type": "AREA",
+    "districtId": "kambia",
+    "lat": 8.9042,
+    "lon": -13.1604,
+    "population": null
+  },
+  {
+    "id": "kalenkay-kambia",
+    "name": "Kalenkay",
+    "type": "AREA",
+    "districtId": "kambia",
+    "lat": 8.8831,
+    "lon": -13.0963,
+    "population": null
+  },
+  {
+    "id": "kambia-kambia",
+    "name": "Kambia",
+    "type": "CITY",
+    "districtId": "kambia",
+    "lat": 9.1251,
+    "lon": -12.9193,
+    "population": null
+  },
+  {
+    "id": "kipimp-kambia",
+    "name": "Kipimp",
+    "type": "AREA",
+    "districtId": "kambia",
+    "lat": 8.922,
+    "lon": -13.1903,
+    "population": null
+  },
+  {
+    "id": "korbolie-kambia",
+    "name": "Korbolie",
+    "type": "AREA",
+    "districtId": "kambia",
+    "lat": 8.9099,
+    "lon": -13.0974,
+    "population": null
+  },
+  {
+    "id": "kortimaw-kambia",
+    "name": "Kortimaw",
+    "type": "AREA",
+    "districtId": "kambia",
+    "lat": 8.9034,
+    "lon": -13.2376,
+    "population": null
+  },
+  {
+    "id": "kukuna-kambia",
+    "name": "Kukuna",
+    "type": "TOWN",
+    "districtId": "kambia",
+    "lat": 9.3975,
+    "lon": -12.6658,
+    "population": null
+  },
+  {
+    "id": "kutr-kambia",
+    "name": "Kutr",
+    "type": "AREA",
+    "districtId": "kambia",
+    "lat": 8.8832,
+    "lon": -13.1424,
+    "population": null
+  },
+  {
+    "id": "madina-kambia",
+    "name": "Madina",
+    "type": "TOWN",
+    "districtId": "kambia",
+    "lat": 9.2882,
+    "lon": -12.6722,
+    "population": null
+  },
+  {
+    "id": "magbema-kambia",
+    "name": "Magbema",
+    "type": "AREA",
+    "districtId": "kambia",
+    "lat": 8.9178,
+    "lon": -13.1555,
+    "population": null
+  },
+  {
+    "id": "makatic-kambia",
+    "name": "Makatic",
+    "type": "TOWN",
+    "districtId": "kambia",
+    "lat": 9.0061,
+    "lon": -12.9466,
+    "population": null
+  },
+  {
+    "id": "makiribo-kambia",
+    "name": "Makiribo",
+    "type": "AREA",
+    "districtId": "kambia",
+    "lat": 8.8562,
+    "lon": -13.1062,
+    "population": null
+  },
+  {
+    "id": "makompa-kambia",
+    "name": "Makompa",
+    "type": "AREA",
+    "districtId": "kambia",
+    "lat": 8.8981,
+    "lon": -13.1149,
+    "population": null
+  },
+  {
+    "id": "matimpeh-kambia",
+    "name": "Matimpeh",
+    "type": "AREA",
+    "districtId": "kambia",
+    "lat": 8.8878,
+    "lon": -13.051,
+    "population": null
+  },
+  {
+    "id": "menkiya-kambia",
+    "name": "Menkiya",
+    "type": "AREA",
+    "districtId": "kambia",
+    "lat": 8.9043,
+    "lon": -13.1068,
+    "population": null
+  },
+  {
+    "id": "rogbom-kambia",
+    "name": "Rogbom",
+    "type": "AREA",
+    "districtId": "kambia",
+    "lat": 8.9188,
+    "lon": -13.173,
+    "population": null
+  },
+  {
+    "id": "rokel-kambia",
+    "name": "Rokel",
+    "type": "AREA",
+    "districtId": "kambia",
+    "lat": 8.8989,
+    "lon": -13.0629,
+    "population": null
+  },
+  {
+    "id": "rokothr-kambia",
+    "name": "Rokothr",
+    "type": "AREA",
+    "districtId": "kambia",
+    "lat": 8.8902,
+    "lon": -13.1364,
+    "population": null
+  },
+  {
+    "id": "rokupr-kambia",
+    "name": "Rokupr",
+    "type": "TOWN",
+    "districtId": "kambia",
+    "lat": 9.0129,
+    "lon": -12.9488,
+    "population": null
+  },
+  {
+    "id": "rosata-kambia",
+    "name": "Rosata",
+    "type": "AREA",
+    "districtId": "kambia",
+    "lat": 8.9218,
+    "lon": -13.1697,
+    "population": null
+  },
+  {
+    "id": "tombo-banka-kambia",
+    "name": "Tombo - Banka",
+    "type": "AREA",
+    "districtId": "kambia",
+    "lat": 8.8544,
+    "lon": -13.1246,
+    "population": null
+  },
+  {
+    "id": "yale-bakeh-kambia",
+    "name": "Yale-Bakeh",
+    "type": "AREA",
+    "districtId": "kambia",
+    "lat": 8.8983,
+    "lon": -13.0844,
+    "population": null
+  },
+  {
+    "id": "banekeh-karene",
+    "name": "Banekeh",
+    "type": "AREA",
+    "districtId": "karene",
+    "lat": 9.4378,
+    "lon": -12.521,
+    "population": null
+  },
+  {
+    "id": "dakadee-karene",
+    "name": "Dakadee",
+    "type": "AREA",
+    "districtId": "karene",
+    "lat": 9.4441,
+    "lon": -12.5873,
+    "population": null
+  },
+  {
+    "id": "diri-karene",
+    "name": "Diri",
+    "type": "AREA",
+    "districtId": "karene",
+    "lat": 9.5172,
+    "lon": -12.3096,
+    "population": null
+  },
+  {
+    "id": "fonaia-karene",
+    "name": "Fonaia",
+    "type": "AREA",
+    "districtId": "karene",
+    "lat": 9.2656,
+    "lon": -11.9675,
+    "population": null
+  },
+  {
+    "id": "ka-soeleh-karene",
+    "name": "Ka-Soeleh",
+    "type": "AREA",
+    "districtId": "karene",
+    "lat": 9.309,
+    "lon": -12.5284,
+    "population": null
+  },
+  {
+    "id": "kabala-line-karene",
+    "name": "Kabala Line",
+    "type": "AREA",
+    "districtId": "karene",
+    "lat": 9.3676,
+    "lon": -12.57,
+    "population": null
+  },
+  {
+    "id": "kabasa-ii-karene",
+    "name": "Kabasa II",
+    "type": "AREA",
+    "districtId": "karene",
+    "lat": 9.367,
+    "lon": -12.5712,
+    "population": null
+  },
+  {
+    "id": "kabba-ferry-karene",
+    "name": "Kabba Ferry",
+    "type": "AREA",
+    "districtId": "karene",
+    "lat": 9.5843,
+    "lon": -12.218,
+    "population": null
+  },
+  {
+    "id": "kagberi-karene",
+    "name": "Kagberi",
+    "type": "AREA",
+    "districtId": "karene",
+    "lat": 9.222,
+    "lon": -12.14,
+    "population": null
+  },
+  {
+    "id": "kakuru-karene",
+    "name": "Kakuru",
+    "type": "AREA",
+    "districtId": "karene",
+    "lat": 9.5102,
+    "lon": -12.1968,
+    "population": null
+  },
+  {
+    "id": "kamakwie-karene",
+    "name": "Kamakwie",
+    "type": "TOWN",
+    "districtId": "karene",
+    "lat": 9.4963,
+    "lon": -12.2413,
+    "population": null
+  },
+  {
+    "id": "kamalu-karene",
+    "name": "Kamalu",
+    "type": "AREA",
+    "districtId": "karene",
+    "lat": 9.4028,
+    "lon": -12.2439,
+    "population": null
+  },
+  {
+    "id": "kamawalla-karene",
+    "name": "Kamawalla",
+    "type": "AREA",
+    "districtId": "karene",
+    "lat": 9.3151,
+    "lon": -12.4872,
+    "population": null
+  },
+  {
+    "id": "kurudara-junction-karene",
+    "name": "Kurudara Junction",
+    "type": "AREA",
+    "districtId": "karene",
+    "lat": 9.4308,
+    "lon": -12.5376,
+    "population": null
+  },
+  {
+    "id": "kutala-karene",
+    "name": "Kutala",
+    "type": "AREA",
+    "districtId": "karene",
+    "lat": 9.2804,
+    "lon": -12.5368,
+    "population": null
+  },
+  {
+    "id": "kutiya-karene",
+    "name": "Kutiya",
+    "type": "AREA",
+    "districtId": "karene",
+    "lat": 9.4103,
+    "lon": -12.5589,
+    "population": null
+  },
+  {
+    "id": "laia-karene",
+    "name": "Laia",
+    "type": "AREA",
+    "districtId": "karene",
+    "lat": 9.4544,
+    "lon": -12.106,
+    "population": null
+  },
+  {
+    "id": "mabala-karene",
+    "name": "Mabala",
+    "type": "AREA",
+    "districtId": "karene",
+    "lat": 9.3725,
+    "lon": -12.4745,
+    "population": null
+  },
+  {
+    "id": "makindota-karene",
+    "name": "Makindota",
+    "type": "AREA",
+    "districtId": "karene",
+    "lat": 9.307,
+    "lon": -12.553,
+    "population": null
+  },
+  {
+    "id": "mateboi-karene",
+    "name": "Mateboi",
+    "type": "AREA",
+    "districtId": "karene",
+    "lat": 9.1053,
+    "lon": -12.3592,
+    "population": null
+  },
+  {
+    "id": "sainya-karene",
+    "name": "Sainya",
+    "type": "TOWN",
+    "districtId": "karene",
+    "lat": 9.8376,
+    "lon": -12.3786,
+    "population": null
+  },
+  {
+    "id": "samaia-karene",
+    "name": "Samaia",
+    "type": "AREA",
+    "districtId": "karene",
+    "lat": 9.512,
+    "lon": -12.3947,
+    "population": null
+  },
+  {
+    "id": "bama-kenema",
+    "name": "Bama",
+    "type": "AREA",
+    "districtId": "kenema",
+    "lat": 8.1746,
+    "lon": -11.4234,
+    "population": null
+  },
+  {
+    "id": "baomo-kenema",
+    "name": "Baomo",
+    "type": "AREA",
+    "districtId": "kenema",
+    "lat": 7.9303,
+    "lon": -11.438,
+    "population": null
+  },
+  {
+    "id": "blama-kenema",
+    "name": "Blama",
+    "type": "TOWN",
+    "districtId": "kenema",
+    "lat": 7.8742,
+    "lon": -11.3448,
+    "population": null
+  },
+  {
+    "id": "bompeworo-kenema",
+    "name": "Bompeworo",
+    "type": "AREA",
+    "districtId": "kenema",
+    "lat": 8.1315,
+    "lon": -11.3848,
+    "population": null
+  },
+  {
+    "id": "buabu-kenema",
+    "name": "Buabu",
+    "type": "AREA",
+    "districtId": "kenema",
+    "lat": 8.1406,
+    "lon": -11.4287,
+    "population": null
+  },
+  {
+    "id": "daru-kenema",
+    "name": "Daru",
+    "type": "TOWN",
+    "districtId": "kenema",
+    "lat": 7.9915,
+    "lon": -10.8459,
+    "population": null
+  },
+  {
+    "id": "fala-kenema",
+    "name": "Fala",
+    "type": "AREA",
+    "districtId": "kenema",
+    "lat": 8.282,
+    "lon": -11.3796,
+    "population": null
+  },
+  {
+    "id": "gumahun-kenema",
+    "name": "Gumahun",
+    "type": "AREA",
+    "districtId": "kenema",
+    "lat": 8.0342,
+    "lon": -11.4275,
+    "population": null
+  },
+  {
+    "id": "jembe-kenema",
+    "name": "Jembe",
+    "type": "AREA",
+    "districtId": "kenema",
+    "lat": 7.9194,
+    "lon": -11.4274,
+    "population": null
+  },
+  {
+    "id": "joru-kenema",
+    "name": "Joru",
+    "type": "TOWN",
+    "districtId": "kenema",
+    "lat": 7.6916,
+    "lon": -11.055,
+    "population": null
+  },
+  {
+    "id": "kenema-kenema",
+    "name": "Kenema",
+    "type": "CITY",
+    "districtId": "kenema",
+    "lat": 7.886,
+    "lon": -11.1864,
+    "population": 188463
+  },
+  {
+    "id": "laiama-kenema",
+    "name": "Laiama",
+    "type": "AREA",
+    "districtId": "kenema",
+    "lat": 8.2781,
+    "lon": -11.3995,
+    "population": null
+  },
+  {
+    "id": "matama-kenema",
+    "name": "Matama",
+    "type": "AREA",
+    "districtId": "kenema",
+    "lat": 8.0418,
+    "lon": -11.3972,
+    "population": null
+  },
+  {
+    "id": "mateima-kenema",
+    "name": "Mateima",
+    "type": "AREA",
+    "districtId": "kenema",
+    "lat": 7.9984,
+    "lon": -11.3941,
+    "population": null
+  },
+  {
+    "id": "ngelehun-kenema",
+    "name": "Ngelehun",
+    "type": "AREA",
+    "districtId": "kenema",
+    "lat": 8.1022,
+    "lon": -11.4181,
+    "population": null
+  },
+  {
+    "id": "njombohun-kenema",
+    "name": "Njombohun",
+    "type": "AREA",
+    "districtId": "kenema",
+    "lat": 8.239,
+    "lon": -11.4025,
+    "population": null
+  },
+  {
+    "id": "nomiama-kenema",
+    "name": "Nomiama",
+    "type": "AREA",
+    "districtId": "kenema",
+    "lat": 8.0893,
+    "lon": -11.3821,
+    "population": null
+  },
+  {
+    "id": "old-baoma-kenema",
+    "name": "Old Baoma",
+    "type": "AREA",
+    "districtId": "kenema",
+    "lat": 7.945,
+    "lon": -11.4315,
+    "population": null
+  },
+  {
+    "id": "panguma-kenema",
+    "name": "Panguma",
+    "type": "TOWN",
+    "districtId": "kenema",
+    "lat": 8.1848,
+    "lon": -11.1314,
+    "population": null
+  },
+  {
+    "id": "poiama-kenema",
+    "name": "Poiama",
+    "type": "AREA",
+    "districtId": "kenema",
+    "lat": 8.2218,
+    "lon": -11.4081,
+    "population": null
+  },
+  {
+    "id": "segbwema-kenema",
+    "name": "Segbwema",
+    "type": "TOWN",
+    "districtId": "kenema",
+    "lat": 7.9967,
+    "lon": -10.9496,
+    "population": null
+  },
+  {
+    "id": "simabu-kenema",
+    "name": "Simabu",
+    "type": "AREA",
+    "districtId": "kenema",
+    "lat": 8.177,
+    "lon": -11.4044,
+    "population": null
+  },
+  {
+    "id": "songaru-kenema",
+    "name": "Songaru",
+    "type": "AREA",
+    "districtId": "kenema",
+    "lat": 8.3234,
+    "lon": -11.3707,
+    "population": null
+  },
+  {
+    "id": "tongo-kenema",
+    "name": "Tongo",
+    "type": "TOWN",
+    "districtId": "kenema",
+    "lat": 8.2189,
+    "lon": -11.0604,
+    "population": null
+  },
+  {
+    "id": "waima-kenema",
+    "name": "Waima",
+    "type": "AREA",
+    "districtId": "kenema",
+    "lat": 7.9306,
+    "lon": -11.4558,
+    "population": null
+  },
+  {
+    "id": "wonde-kenema",
+    "name": "Wonde",
+    "type": "AREA",
+    "districtId": "kenema",
+    "lat": 7.7645,
+    "lon": -11.4741,
+    "population": null
+  },
+  {
+    "id": "yakaji-kenema",
+    "name": "Yakaji",
+    "type": "AREA",
+    "districtId": "kenema",
+    "lat": 8.0052,
+    "lon": -11.428,
+    "population": null
+  },
+  {
+    "id": "alikalia-koinadugu",
+    "name": "Alikalia",
+    "type": "AREA",
+    "districtId": "koinadugu",
+    "lat": 9.1531,
+    "lon": -11.388,
+    "population": null
+  },
+  {
+    "id": "bafodia-koinadugu",
+    "name": "Bafodia",
+    "type": "AREA",
+    "districtId": "koinadugu",
+    "lat": 9.6828,
+    "lon": -11.7341,
+    "population": null
+  },
+  {
+    "id": "bendugu-koinadugu",
+    "name": "Bendugu",
+    "type": "AREA",
+    "districtId": "koinadugu",
+    "lat": 9.062,
+    "lon": -11.4892,
+    "population": null
+  },
+  {
+    "id": "darakuru-koinadugu",
+    "name": "Darakuru",
+    "type": "AREA",
+    "districtId": "koinadugu",
+    "lat": 9.1927,
+    "lon": -11.5309,
+    "population": null
+  },
+  {
+    "id": "fadugu-koinadugu",
+    "name": "Fadugu",
+    "type": "AREA",
+    "districtId": "koinadugu",
+    "lat": 9.3921,
+    "lon": -11.7668,
+    "population": null
+  },
+  {
+    "id": "foria-koinadugu",
+    "name": "Foria",
+    "type": "AREA",
+    "districtId": "koinadugu",
+    "lat": 9.2489,
+    "lon": -11.4558,
+    "population": null
+  },
+  {
+    "id": "gbentu-koinadugu",
+    "name": "Gbentu",
+    "type": "TOWN",
+    "districtId": "koinadugu",
+    "lat": 9.9416,
+    "lon": -11.6443,
+    "population": null
+  },
+  {
+    "id": "kabala-koinadugu",
+    "name": "Kabala",
+    "type": "TOWN",
+    "districtId": "koinadugu",
+    "lat": 9.5877,
+    "lon": -11.5501,
+    "population": null
+  },
+  {
+    "id": "kadansu-koinadugu",
+    "name": "Kadansu",
+    "type": "AREA",
+    "districtId": "koinadugu",
+    "lat": 9.5972,
+    "lon": -11.7601,
+    "population": null
+  },
+  {
+    "id": "kamanor-koinadugu",
+    "name": "Kamanor",
+    "type": "AREA",
+    "districtId": "koinadugu",
+    "lat": 9.5508,
+    "lon": -11.5616,
+    "population": null
+  },
+  {
+    "id": "kambia-koinadugu",
+    "name": "Kambia",
+    "type": "AREA",
+    "districtId": "koinadugu",
+    "lat": 9.8716,
+    "lon": -11.8836,
+    "population": null
+  },
+  {
+    "id": "kania-koinadugu",
+    "name": "Kania",
+    "type": "AREA",
+    "districtId": "koinadugu",
+    "lat": 9.2126,
+    "lon": -11.6089,
+    "population": null
+  },
+  {
+    "id": "kasasi-koinadugu",
+    "name": "Kasasi",
+    "type": "AREA",
+    "districtId": "koinadugu",
+    "lat": 9.5267,
+    "lon": -11.837,
+    "population": null
+  },
+  {
+    "id": "kumala-koinadugu",
+    "name": "Kumala",
+    "type": "AREA",
+    "districtId": "koinadugu",
+    "lat": 9.0646,
+    "lon": -11.4024,
+    "population": null
+  },
+  {
+    "id": "kumunkalia-koinadugu",
+    "name": "Kumunkalia",
+    "type": "AREA",
+    "districtId": "koinadugu",
+    "lat": 9.1723,
+    "lon": -11.4447,
+    "population": null
+  },
+  {
+    "id": "kunya-koinadugu",
+    "name": "Kunya",
+    "type": "AREA",
+    "districtId": "koinadugu",
+    "lat": 9.1555,
+    "lon": -11.5173,
+    "population": null
+  },
+  {
+    "id": "lengekoro-koinadugu",
+    "name": "Lengekoro",
+    "type": "AREA",
+    "districtId": "koinadugu",
+    "lat": 9.4664,
+    "lon": -11.677,
+    "population": null
+  },
+  {
+    "id": "mandia-koinadugu",
+    "name": "Mandia",
+    "type": "AREA",
+    "districtId": "koinadugu",
+    "lat": 9.9751,
+    "lon": -11.851,
+    "population": null
+  },
+  {
+    "id": "musaia-koinadugu",
+    "name": "Musaia",
+    "type": "TOWN",
+    "districtId": "koinadugu",
+    "lat": 9.7597,
+    "lon": -11.5714,
+    "population": null
+  },
+  {
+    "id": "sandikoro-koinadugu",
+    "name": "Sandikoro",
+    "type": "AREA",
+    "districtId": "koinadugu",
+    "lat": 9.5763,
+    "lon": -11.883,
+    "population": null
+  },
+  {
+    "id": "sirekude-koinadugu",
+    "name": "Sirekude",
+    "type": "AREA",
+    "districtId": "koinadugu",
+    "lat": 9.9141,
+    "lon": -11.8461,
+    "population": null
+  },
+  {
+    "id": "yanwulia-koinadugu",
+    "name": "Yanwulia",
+    "type": "AREA",
+    "districtId": "koinadugu",
+    "lat": 9.2079,
+    "lon": -11.458,
+    "population": null
+  },
+  {
+    "id": "yisimaia-koinadugu",
+    "name": "Yisimaia",
+    "type": "AREA",
+    "districtId": "koinadugu",
+    "lat": 9.5611,
+    "lon": -11.5189,
+    "population": null
+  },
+  {
+    "id": "baama-kono",
+    "name": "Baama",
+    "type": "AREA",
+    "districtId": "kono",
+    "lat": 8.3523,
+    "lon": -11.3312,
+    "population": null
+  },
+  {
+    "id": "bangwama-kono",
+    "name": "Bangwama",
+    "type": "AREA",
+    "districtId": "kono",
+    "lat": 8.4967,
+    "lon": -11.375,
+    "population": null
+  },
+  {
+    "id": "bendu-kono",
+    "name": "Bendu",
+    "type": "TOWN",
+    "districtId": "kono",
+    "lat": 8.6975,
+    "lon": -11.0144,
+    "population": null
+  },
+  {
+    "id": "cassanova-kono",
+    "name": "cassanova",
+    "type": "TOWN",
+    "districtId": "kono",
+    "lat": 8.522,
+    "lon": -11.0762,
+    "population": 120
+  },
+  {
+    "id": "fothono-thama-kono",
+    "name": "Fothono Thama",
+    "type": "AREA",
+    "districtId": "kono",
+    "lat": 8.5727,
+    "lon": -11.3831,
+    "population": null
+  },
+  {
+    "id": "jaiama-nimiyama-kono",
+    "name": "Jaiama Nimiyama",
+    "type": "TOWN",
+    "districtId": "kono",
+    "lat": 8.5406,
+    "lon": -11.2446,
+    "population": null
+  },
+  {
+    "id": "juma-kono",
+    "name": "Juma",
+    "type": "AREA",
+    "districtId": "kono",
+    "lat": 8.3888,
+    "lon": -11.4174,
+    "population": null
+  },
+  {
+    "id": "kenyema-kono",
+    "name": "Kenyema",
+    "type": "AREA",
+    "districtId": "kono",
+    "lat": 8.47,
+    "lon": -11.4134,
+    "population": null
+  },
+  {
+    "id": "koidu-kono",
+    "name": "Koidu",
+    "type": "CITY",
+    "districtId": "kono",
+    "lat": 8.6423,
+    "lon": -10.9716,
+    "population": 124662
+  },
+  {
+    "id": "kortuhun-kono",
+    "name": "Kortuhun",
+    "type": "AREA",
+    "districtId": "kono",
+    "lat": 8.427,
+    "lon": -11.3969,
+    "population": null
+  },
+  {
+    "id": "kpanguama-kono",
+    "name": "Kpanguama",
+    "type": "AREA",
+    "districtId": "kono",
+    "lat": 8.498,
+    "lon": -11.3732,
+    "population": null
+  },
+  {
+    "id": "mabeko-kono",
+    "name": "Mabeko",
+    "type": "AREA",
+    "districtId": "kono",
+    "lat": 8.6219,
+    "lon": -11.4153,
+    "population": null
+  },
+  {
+    "id": "makelfa-kono",
+    "name": "Makelfa",
+    "type": "AREA",
+    "districtId": "kono",
+    "lat": 8.599,
+    "lon": -11.3861,
+    "population": null
+  },
+  {
+    "id": "mano-kono",
+    "name": "Mano",
+    "type": "AREA",
+    "districtId": "kono",
+    "lat": 8.4168,
+    "lon": -11.366,
+    "population": null
+  },
+  {
+    "id": "masakoray-kono",
+    "name": "Masakoray",
+    "type": "AREA",
+    "districtId": "kono",
+    "lat": 8.5925,
+    "lon": -11.3825,
+    "population": null
+  },
+  {
+    "id": "mondema-kono",
+    "name": "Mondema",
+    "type": "AREA",
+    "districtId": "kono",
+    "lat": 8.4746,
+    "lon": -11.4366,
+    "population": null
+  },
+  {
+    "id": "ngombu-kono",
+    "name": "Ngombu",
+    "type": "AREA",
+    "districtId": "kono",
+    "lat": 8.3564,
+    "lon": -11.378,
+    "population": null
+  },
+  {
+    "id": "petifu-bomothollie-kono",
+    "name": "Petifu-Bomothollie",
+    "type": "AREA",
+    "districtId": "kono",
+    "lat": 8.6993,
+    "lon": -11.3934,
+    "population": null
+  },
+  {
+    "id": "rosinkim-kono",
+    "name": "Rosinkim",
+    "type": "AREA",
+    "districtId": "kono",
+    "lat": 8.7734,
+    "lon": -11.404,
+    "population": null
+  },
+  {
+    "id": "royema-kono",
+    "name": "Royema",
+    "type": "AREA",
+    "districtId": "kono",
+    "lat": 8.7542,
+    "lon": -11.3937,
+    "population": null
+  },
+  {
+    "id": "royema-falima-kono",
+    "name": "Royema-Falima",
+    "type": "AREA",
+    "districtId": "kono",
+    "lat": 8.6832,
+    "lon": -11.374,
+    "population": null
+  },
+  {
+    "id": "sipahun-kono",
+    "name": "Sipahun",
+    "type": "AREA",
+    "districtId": "kono",
+    "lat": 8.4206,
+    "lon": -11.422,
+    "population": null
+  },
+  {
+    "id": "worobaia-kono",
+    "name": "Worobaia",
+    "type": "AREA",
+    "districtId": "kono",
+    "lat": 8.9773,
+    "lon": -11.4084,
+    "population": null
+  },
+  {
+    "id": "yeida-kono",
+    "name": "Yeida",
+    "type": "TOWN",
+    "districtId": "kono",
+    "lat": 8.7164,
+    "lon": -11.229,
+    "population": null
+  },
+  {
+    "id": "yema-sembu-kono",
+    "name": "Yema-Sembu",
+    "type": "AREA",
+    "districtId": "kono",
+    "lat": 8.7157,
+    "lon": -11.3857,
+    "population": null
+  },
+  {
+    "id": "yengema-kono",
+    "name": "Yengema",
+    "type": "TOWN",
+    "districtId": "kono",
+    "lat": 8.6188,
+    "lon": -11.0445,
+    "population": null
+  },
+  {
+    "id": "yomadu-kono",
+    "name": "Yomadu",
+    "type": "TOWN",
+    "districtId": "kono",
+    "lat": 8.7438,
+    "lon": -11.1046,
+    "population": null
+  },
+  {
+    "id": "bandasuma-moyamba",
+    "name": "Bandasuma",
+    "type": "AREA",
+    "districtId": "moyamba",
+    "lat": 8.192,
+    "lon": -12.6949,
+    "population": null
+  },
+  {
+    "id": "batpo-moyamba",
+    "name": "Batpo",
+    "type": "AREA",
+    "districtId": "moyamba",
+    "lat": 8.3696,
+    "lon": -12.7039,
+    "population": null
+  },
+  {
+    "id": "bumpe-moyamba",
+    "name": "Bumpe",
+    "type": "AREA",
+    "districtId": "moyamba",
+    "lat": 8.1408,
+    "lon": -12.7119,
+    "population": null
+  },
+  {
+    "id": "gendema-moyamba",
+    "name": "Gendema",
+    "type": "AREA",
+    "districtId": "moyamba",
+    "lat": 8.1223,
+    "lon": -12.7162,
+    "population": null
+  },
+  {
+    "id": "kassipoto-moyamba",
+    "name": "Kassipoto",
+    "type": "AREA",
+    "districtId": "moyamba",
+    "lat": 8.1324,
+    "lon": -12.7261,
+    "population": null
+  },
+  {
+    "id": "mafulumu-koya-moyamba",
+    "name": "Mafulumu Koya",
+    "type": "AREA",
+    "districtId": "moyamba",
+    "lat": 8.3701,
+    "lon": -12.6792,
+    "population": null
+  },
+  {
+    "id": "makarankay-moyamba",
+    "name": "Makarankay",
+    "type": "AREA",
+    "districtId": "moyamba",
+    "lat": 8.4039,
+    "lon": -12.6541,
+    "population": null
+  },
+  {
+    "id": "makuntor-koya-moyamba",
+    "name": "Makuntor Koya",
+    "type": "AREA",
+    "districtId": "moyamba",
+    "lat": 8.3806,
+    "lon": -12.668,
+    "population": null
+  },
+  {
+    "id": "mamu-moyamba",
+    "name": "Mamu",
+    "type": "AREA",
+    "districtId": "moyamba",
+    "lat": 8.0964,
+    "lon": -12.7443,
+    "population": null
+  },
+  {
+    "id": "marampa-moyamba",
+    "name": "Marampa",
+    "type": "AREA",
+    "districtId": "moyamba",
+    "lat": 8.4196,
+    "lon": -12.6268,
+    "population": null
+  },
+  {
+    "id": "marsarakule-moyamba",
+    "name": "Marsarakule",
+    "type": "AREA",
+    "districtId": "moyamba",
+    "lat": 8.3613,
+    "lon": -12.7038,
+    "population": null
+  },
+  {
+    "id": "masebeh-moyamba",
+    "name": "Masebeh",
+    "type": "AREA",
+    "districtId": "moyamba",
+    "lat": 8.4001,
+    "lon": -12.6245,
+    "population": null
+  },
+  {
+    "id": "mendetown-moyamba",
+    "name": "Mendetown",
+    "type": "AREA",
+    "districtId": "moyamba",
+    "lat": 8.0509,
+    "lon": -12.8034,
+    "population": null
+  },
+  {
+    "id": "mokaisumana-moyamba",
+    "name": "Mokaisumana",
+    "type": "AREA",
+    "districtId": "moyamba",
+    "lat": 8.0032,
+    "lon": -12.8233,
+    "population": null
+  },
+  {
+    "id": "mokanji-moyamba",
+    "name": "Mokanji",
+    "type": "TOWN",
+    "districtId": "moyamba",
+    "lat": 7.9004,
+    "lon": -12.1922,
+    "population": null
+  },
+  {
+    "id": "mokebbie-moyamba",
+    "name": "Mokebbie",
+    "type": "AREA",
+    "districtId": "moyamba",
+    "lat": 8.2109,
+    "lon": -12.738,
+    "population": null
+  },
+  {
+    "id": "moyamba-moyamba",
+    "name": "Moyamba",
+    "type": "TOWN",
+    "districtId": "moyamba",
+    "lat": 8.1593,
+    "lon": -12.4314,
+    "population": null
+  },
+  {
+    "id": "moyema-moyamba",
+    "name": "Moyema",
+    "type": "AREA",
+    "districtId": "moyamba",
+    "lat": 8.0721,
+    "lon": -12.774,
+    "population": null
+  },
+  {
+    "id": "njala-moyamba",
+    "name": "Njala",
+    "type": "TOWN",
+    "districtId": "moyamba",
+    "lat": 8.1136,
+    "lon": -12.0741,
+    "population": null
+  },
+  {
+    "id": "ro-barrie-moyamba",
+    "name": "Ro-barrie",
+    "type": "AREA",
+    "districtId": "moyamba",
+    "lat": 8.3735,
+    "lon": -12.6311,
+    "population": null
+  },
+  {
+    "id": "rotifunk-moyamba",
+    "name": "Rotifunk",
+    "type": "AREA",
+    "districtId": "moyamba",
+    "lat": 8.2284,
+    "lon": -12.6772,
+    "population": null
+  },
+  {
+    "id": "taiama-moyamba",
+    "name": "Taiama",
+    "type": "TOWN",
+    "districtId": "moyamba",
+    "lat": 8.1999,
+    "lon": -12.0614,
+    "population": null
+  },
+  {
+    "id": "yengema-moyamba",
+    "name": "Yengema",
+    "type": "AREA",
+    "districtId": "moyamba",
+    "lat": 8.1739,
+    "lon": -12.6974,
+    "population": null
+  },
+  {
+    "id": "bake-laimbray-port-loko",
+    "name": "Bake - Laimbray",
+    "type": "AREA",
+    "districtId": "port_loko",
+    "lat": 8.8517,
+    "lon": -13.073,
+    "population": null
+  },
+  {
+    "id": "barbara-port-loko",
+    "name": "Barbara",
+    "type": "AREA",
+    "districtId": "port_loko",
+    "lat": 8.8314,
+    "lon": -13.1317,
+    "population": null
+  },
+  {
+    "id": "katoma-port-loko",
+    "name": "Katoma",
+    "type": "AREA",
+    "districtId": "port_loko",
+    "lat": 8.8318,
+    "lon": -12.9591,
+    "population": null
+  },
+  {
+    "id": "katonga-port-loko",
+    "name": "Katonga",
+    "type": "AREA",
+    "districtId": "port_loko",
+    "lat": 8.8369,
+    "lon": -12.9341,
+    "population": null
+  },
+  {
+    "id": "konta-port-loko",
+    "name": "Konta",
+    "type": "AREA",
+    "districtId": "port_loko",
+    "lat": 8.8477,
+    "lon": -13.0353,
+    "population": null
+  },
+  {
+    "id": "lunsar-port-loko",
+    "name": "Lunsar",
+    "type": "TOWN",
+    "districtId": "port_loko",
+    "lat": 8.6871,
+    "lon": -12.5437,
+    "population": 36108
+  },
+  {
+    "id": "magbeni-port-loko",
+    "name": "Magbeni",
+    "type": "AREA",
+    "districtId": "port_loko",
+    "lat": 8.5566,
+    "lon": -12.8149,
+    "population": null
+  },
+  {
+    "id": "mahera-port-loko",
+    "name": "Mahera",
+    "type": "AREA",
+    "districtId": "port_loko",
+    "lat": 8.8629,
+    "lon": -13.0159,
+    "population": null
+  },
+  {
+    "id": "masampa-port-loko",
+    "name": "Masampa",
+    "type": "AREA",
+    "districtId": "port_loko",
+    "lat": 8.898,
+    "lon": -12.9472,
+    "population": null
+  },
+  {
+    "id": "masiaka-port-loko",
+    "name": "Masiaka",
+    "type": "AREA",
+    "districtId": "port_loko",
+    "lat": 8.4909,
+    "lon": -12.7574,
+    "population": null
+  },
+  {
+    "id": "masiala-port-loko",
+    "name": "Masiala",
+    "type": "AREA",
+    "districtId": "port_loko",
+    "lat": 8.4861,
+    "lon": -12.7674,
+    "population": null
+  },
+  {
+    "id": "misra-port-loko",
+    "name": "Misra",
+    "type": "AREA",
+    "districtId": "port_loko",
+    "lat": 8.8699,
+    "lon": -12.9588,
+    "population": null
+  },
+  {
+    "id": "port-loko-port-loko",
+    "name": "Port Loko",
+    "type": "TOWN",
+    "districtId": "port_loko",
+    "lat": 8.7647,
+    "lon": -12.7854,
+    "population": null
+  },
+  {
+    "id": "robis-port-loko",
+    "name": "Robis",
+    "type": "AREA",
+    "districtId": "port_loko",
+    "lat": 8.857,
+    "lon": -13.017,
+    "population": null
+  },
+  {
+    "id": "rofunk-port-loko",
+    "name": "Rofunk",
+    "type": "AREA",
+    "districtId": "port_loko",
+    "lat": 8.8607,
+    "lon": -13.0253,
+    "population": null
+  },
+  {
+    "id": "rogbom-konkolikot-port-loko",
+    "name": "Rogbom Konkolikot",
+    "type": "AREA",
+    "districtId": "port_loko",
+    "lat": 8.8488,
+    "lon": -12.9703,
+    "population": null
+  },
+  {
+    "id": "rokithegbeh-port-loko",
+    "name": "Rokithegbeh",
+    "type": "AREA",
+    "districtId": "port_loko",
+    "lat": 8.864,
+    "lon": -12.9938,
+    "population": null
+  },
+  {
+    "id": "rotain-lol-port-loko",
+    "name": "Rotain - Lol",
+    "type": "AREA",
+    "districtId": "port_loko",
+    "lat": 8.851,
+    "lon": -13.0607,
+    "population": null
+  },
+  {
+    "id": "tapeh-toko-port-loko",
+    "name": "Tapeh - Toko",
+    "type": "AREA",
+    "districtId": "port_loko",
+    "lat": 8.8433,
+    "lon": -12.9623,
+    "population": null
+  },
+  {
+    "id": "waterloo-port-loko",
+    "name": "Waterloo",
+    "type": "AREA",
+    "districtId": "port_loko",
+    "lat": 8.7165,
+    "lon": -12.6406,
+    "population": null
+  },
+  {
+    "id": "yale-kakonko-port-loko",
+    "name": "Yale Kakonko",
+    "type": "AREA",
+    "districtId": "port_loko",
+    "lat": 8.8547,
+    "lon": -13.053,
+    "population": null
+  },
+  {
+    "id": "yenkesa-port-loko",
+    "name": "Yenkesa",
+    "type": "AREA",
+    "districtId": "port_loko",
+    "lat": 8.881,
+    "lon": -12.9609,
+    "population": null
+  },
+  {
+    "id": "baiamawa-pujehun",
+    "name": "Baiamawa",
+    "type": "AREA",
+    "districtId": "pujehun",
+    "lat": 7.5336,
+    "lon": -12.0811,
+    "population": null
+  },
+  {
+    "id": "bali-pujehun",
+    "name": "Bali",
+    "type": "AREA",
+    "districtId": "pujehun",
+    "lat": 7.4444,
+    "lon": -12.0568,
+    "population": null
+  },
+  {
+    "id": "batoke-pujehun",
+    "name": "Batoke",
+    "type": "AREA",
+    "districtId": "pujehun",
+    "lat": 7.5256,
+    "lon": -12.0766,
+    "population": null
+  },
+  {
+    "id": "bolleh-pujehun",
+    "name": "Bolleh",
+    "type": "AREA",
+    "districtId": "pujehun",
+    "lat": 7.5241,
+    "lon": -12.005,
+    "population": null
+  },
+  {
+    "id": "dambara-pujehun",
+    "name": "Dambara",
+    "type": "AREA",
+    "districtId": "pujehun",
+    "lat": 7.4596,
+    "lon": -12.099,
+    "population": null
+  },
+  {
+    "id": "fairo-pujehun",
+    "name": "Fairo",
+    "type": "TOWN",
+    "districtId": "pujehun",
+    "lat": 7.0909,
+    "lon": -11.4046,
+    "population": null
+  },
+  {
+    "id": "fula-pujehun",
+    "name": "Fula",
+    "type": "AREA",
+    "districtId": "pujehun",
+    "lat": 7.5407,
+    "lon": -11.966,
+    "population": null
+  },
+  {
+    "id": "gambia-pujehun",
+    "name": "Gambia",
+    "type": "AREA",
+    "districtId": "pujehun",
+    "lat": 7.5291,
+    "lon": -11.9729,
+    "population": null
+  },
+  {
+    "id": "gbenbu-pujehun",
+    "name": "Gbenbu",
+    "type": "AREA",
+    "districtId": "pujehun",
+    "lat": 7.4298,
+    "lon": -12.0618,
+    "population": null
+  },
+  {
+    "id": "gbondapi-pujehun",
+    "name": "Gbondapi",
+    "type": "TOWN",
+    "districtId": "pujehun",
+    "lat": 7.3197,
+    "lon": -11.85,
+    "population": null
+  },
+  {
+    "id": "gondama-pujehun",
+    "name": "Gondama",
+    "type": "AREA",
+    "districtId": "pujehun",
+    "lat": 7.5626,
+    "lon": -11.983,
+    "population": null
+  },
+  {
+    "id": "grima-pujehun",
+    "name": "Grima",
+    "type": "AREA",
+    "districtId": "pujehun",
+    "lat": 7.583,
+    "lon": -12.0706,
+    "population": null
+  },
+  {
+    "id": "mandu-pujehun",
+    "name": "Mandu",
+    "type": "AREA",
+    "districtId": "pujehun",
+    "lat": 7.4566,
+    "lon": -12.0946,
+    "population": null
+  },
+  {
+    "id": "matagema-pujehun",
+    "name": "Matagema",
+    "type": "AREA",
+    "districtId": "pujehun",
+    "lat": 7.4534,
+    "lon": -12.0629,
+    "population": null
+  },
+  {
+    "id": "mogbavai-pujehun",
+    "name": "Mogbavai",
+    "type": "AREA",
+    "districtId": "pujehun",
+    "lat": 7.5224,
+    "lon": -11.9987,
+    "population": null
+  },
+  {
+    "id": "mongere-pujehun",
+    "name": "Mongere",
+    "type": "AREA",
+    "districtId": "pujehun",
+    "lat": 7.6274,
+    "lon": -12.0224,
+    "population": null
+  },
+  {
+    "id": "mosanjo-pujehun",
+    "name": "Mosanjo",
+    "type": "AREA",
+    "districtId": "pujehun",
+    "lat": 7.5011,
+    "lon": -12.0681,
+    "population": null
+  },
+  {
+    "id": "motua-pujehun",
+    "name": "Motua",
+    "type": "AREA",
+    "districtId": "pujehun",
+    "lat": 7.6138,
+    "lon": -12.0467,
+    "population": null
+  },
+  {
+    "id": "ngueh-pujehun",
+    "name": "Ngueh",
+    "type": "AREA",
+    "districtId": "pujehun",
+    "lat": 7.4773,
+    "lon": -12.0724,
+    "population": null
+  },
+  {
+    "id": "potoru-pujehun",
+    "name": "Potoru",
+    "type": "TOWN",
+    "districtId": "pujehun",
+    "lat": 7.5057,
+    "lon": -11.4786,
+    "population": null
+  },
+  {
+    "id": "pujehun-pujehun",
+    "name": "Pujehun",
+    "type": "TOWN",
+    "districtId": "pujehun",
+    "lat": 7.3566,
+    "lon": -11.7213,
+    "population": null
+  },
+  {
+    "id": "sargor-pujehun",
+    "name": "Sargor",
+    "type": "AREA",
+    "districtId": "pujehun",
+    "lat": 7.4155,
+    "lon": -12.0795,
+    "population": null
+  },
+  {
+    "id": "senehun-pujehun",
+    "name": "Senehun",
+    "type": "AREA",
+    "districtId": "pujehun",
+    "lat": 7.4006,
+    "lon": -12.1145,
+    "population": null
+  },
+  {
+    "id": "senjehun-pujehun",
+    "name": "Senjehun",
+    "type": "AREA",
+    "districtId": "pujehun",
+    "lat": 7.5307,
+    "lon": -12.0169,
+    "population": null
+  },
+  {
+    "id": "sullima-pujehun",
+    "name": "Sullima",
+    "type": "TOWN",
+    "districtId": "pujehun",
+    "lat": 6.9694,
+    "lon": -11.5753,
+    "population": null
+  },
+  {
+    "id": "torma-bum-pujehun",
+    "name": "Torma Bum",
+    "type": "TOWN",
+    "districtId": "pujehun",
+    "lat": 7.4159,
+    "lon": -12.0065,
+    "population": null
+  },
+  {
+    "id": "zimmi-pujehun",
+    "name": "Zimmi",
+    "type": "TOWN",
+    "districtId": "pujehun",
+    "lat": 7.3123,
+    "lon": -11.3103,
+    "population": null
+  },
+  {
+    "id": "mababay-tonkolili",
+    "name": "Mababay",
+    "type": "AREA",
+    "districtId": "tonkolili",
+    "lat": 8.5526,
+    "lon": -12.2275,
+    "population": null
+  },
+  {
+    "id": "madina-tonkolili",
+    "name": "Madina",
+    "type": "AREA",
+    "districtId": "tonkolili",
+    "lat": 8.5231,
+    "lon": -12.239,
+    "population": null
+  },
+  {
+    "id": "magburaka-tonkolili",
+    "name": "Magburaka",
+    "type": "TOWN",
+    "districtId": "tonkolili",
+    "lat": 8.7228,
+    "lon": -11.9492,
+    "population": 40313
+  },
+  {
+    "id": "mameleh-tonkolili",
+    "name": "Mameleh",
+    "type": "AREA",
+    "districtId": "tonkolili",
+    "lat": 8.6749,
+    "lon": -12.1907,
+    "population": null
+  },
+  {
+    "id": "mamuta-tonkolili",
+    "name": "Mamuta",
+    "type": "AREA",
+    "districtId": "tonkolili",
+    "lat": 8.4378,
+    "lon": -12.1817,
+    "population": null
+  },
+  {
+    "id": "marunia-tonkolili",
+    "name": "Marunia",
+    "type": "AREA",
+    "districtId": "tonkolili",
+    "lat": 8.6544,
+    "lon": -12.2547,
+    "population": null
+  },
+  {
+    "id": "mashereku-tonkolili",
+    "name": "Mashereku",
+    "type": "AREA",
+    "districtId": "tonkolili",
+    "lat": 8.5528,
+    "lon": -12.2498,
+    "population": null
+  },
+  {
+    "id": "mashim-tonkolili",
+    "name": "Mashim",
+    "type": "AREA",
+    "districtId": "tonkolili",
+    "lat": 8.5083,
+    "lon": -12.2513,
+    "population": null
+  },
+  {
+    "id": "masorie-tonkolili",
+    "name": "Masorie",
+    "type": "AREA",
+    "districtId": "tonkolili",
+    "lat": 8.4689,
+    "lon": -12.2023,
+    "population": null
+  },
+  {
+    "id": "matotaka-tonkolili",
+    "name": "Matotaka",
+    "type": "TOWN",
+    "districtId": "tonkolili",
+    "lat": 8.6556,
+    "lon": -11.8566,
+    "population": null
+  },
+  {
+    "id": "maworr-tonkolili",
+    "name": "Maworr",
+    "type": "AREA",
+    "districtId": "tonkolili",
+    "lat": 8.6045,
+    "lon": -12.2751,
+    "population": null
+  },
+  {
+    "id": "mayola-tonkolili",
+    "name": "Mayola",
+    "type": "AREA",
+    "districtId": "tonkolili",
+    "lat": 8.571,
+    "lon": -12.312,
+    "population": null
+  },
+  {
+    "id": "mile-91-tonkolili",
+    "name": "Mile 91",
+    "type": "TOWN",
+    "districtId": "tonkolili",
+    "lat": 8.4666,
+    "lon": -12.2144,
+    "population": null
+  },
+  {
+    "id": "rawarrah-tonkolili",
+    "name": "RaWarrah",
+    "type": "AREA",
+    "districtId": "tonkolili",
+    "lat": 8.5849,
+    "lon": -12.205,
+    "population": null
+  },
+  {
+    "id": "robon-tonkolili",
+    "name": "Robon",
+    "type": "AREA",
+    "districtId": "tonkolili",
+    "lat": 8.5795,
+    "lon": -12.2084,
+    "population": null
+  },
+  {
+    "id": "robossor-tonkolili",
+    "name": "Robossor",
+    "type": "AREA",
+    "districtId": "tonkolili",
+    "lat": 8.6207,
+    "lon": -12.258,
+    "population": null
+  },
+  {
+    "id": "rofunk-tonkolili",
+    "name": "Rofunk",
+    "type": "AREA",
+    "districtId": "tonkolili",
+    "lat": 8.5989,
+    "lon": -12.2006,
+    "population": null
+  },
+  {
+    "id": "rokomeh-tonkolili",
+    "name": "Rokomeh",
+    "type": "AREA",
+    "districtId": "tonkolili",
+    "lat": 8.5781,
+    "lon": -12.2778,
+    "population": null
+  },
+  {
+    "id": "romankneh-tonkolili",
+    "name": "Romankneh",
+    "type": "AREA",
+    "districtId": "tonkolili",
+    "lat": 8.4331,
+    "lon": -12.176,
+    "population": null
+  },
+  {
+    "id": "ropothka-tonkolili",
+    "name": "Ropothka",
+    "type": "AREA",
+    "districtId": "tonkolili",
+    "lat": 8.5214,
+    "lon": -12.289,
+    "population": null
+  },
+  {
+    "id": "rotutrble-tonkolili",
+    "name": "Rotutrble",
+    "type": "AREA",
+    "districtId": "tonkolili",
+    "lat": 8.5353,
+    "lon": -12.2458,
+    "population": null
+  },
+  {
+    "id": "royeal-tonkolili",
+    "name": "Royeal",
+    "type": "AREA",
+    "districtId": "tonkolili",
+    "lat": 8.5873,
+    "lon": -12.2143,
+    "population": null
+  },
+  {
+    "id": "runia-magboca-tonkolili",
+    "name": "Runia Magboca",
+    "type": "AREA",
+    "districtId": "tonkolili",
+    "lat": 8.65,
+    "lon": -12.2538,
+    "population": null
+  },
+  {
+    "id": "baibureh-ville-western-rural",
+    "name": "Baibureh Ville",
+    "type": "AREA",
+    "districtId": "western_rural",
+    "lat": 8.3852,
+    "lon": -13.1571,
+    "population": null
+  },
+  {
+    "id": "bengazi-western-rural",
+    "name": "Bengazi",
+    "type": "AREA",
+    "districtId": "western_rural",
+    "lat": 8.3807,
+    "lon": -13.1422,
+    "population": null
+  },
+  {
+    "id": "cyprus-western-rural",
+    "name": "Cyprus",
+    "type": "AREA",
+    "districtId": "western_rural",
+    "lat": 8.3909,
+    "lon": -13.1542,
+    "population": null
+  },
+  {
+    "id": "dafore-western-rural",
+    "name": "Dafore",
+    "type": "AREA",
+    "districtId": "western_rural",
+    "lat": 8.3721,
+    "lon": -13.1354,
+    "population": null
+  },
+  {
+    "id": "forut-western-rural",
+    "name": "Forut",
+    "type": "AREA",
+    "districtId": "western_rural",
+    "lat": 8.3879,
+    "lon": -13.1542,
+    "population": null
+  },
+  {
+    "id": "hastings-western-rural",
+    "name": "Hastings",
+    "type": "TOWN",
+    "districtId": "western_rural",
+    "lat": 8.3873,
+    "lon": -13.1387,
+    "population": null
+  },
+  {
+    "id": "hastings-quarry-western-rural",
+    "name": "Hastings Quarry",
+    "type": "AREA",
+    "districtId": "western_rural",
+    "lat": 8.382,
+    "lon": -13.1459,
+    "population": null
+  },
+  {
+    "id": "jui-western-rural",
+    "name": "Jui",
+    "type": "AREA",
+    "districtId": "western_rural",
+    "lat": 8.3932,
+    "lon": -13.1439,
+    "population": null
+  },
+  {
+    "id": "jui-barracks-western-rural",
+    "name": "Jui Barracks",
+    "type": "AREA",
+    "districtId": "western_rural",
+    "lat": 8.3955,
+    "lon": -13.1426,
+    "population": null
+  },
+  {
+    "id": "jul-river-community-western-rural",
+    "name": "Jul River Community",
+    "type": "AREA",
+    "districtId": "western_rural",
+    "lat": 8.4144,
+    "lon": -13.1277,
+    "population": null
+  },
+  {
+    "id": "kingston-town-western-rural",
+    "name": "Kingston Town",
+    "type": "AREA",
+    "districtId": "western_rural",
+    "lat": 8.3723,
+    "lon": -13.1472,
+    "population": null
+  },
+  {
+    "id": "kobba-western-rural",
+    "name": "Kobba",
+    "type": "AREA",
+    "districtId": "western_rural",
+    "lat": 8.3889,
+    "lon": -13.1395,
+    "population": null
+  },
+  {
+    "id": "looking-town-western-rural",
+    "name": "Looking Town",
+    "type": "AREA",
+    "districtId": "western_rural",
+    "lat": 8.3892,
+    "lon": -13.1585,
+    "population": null
+  },
+  {
+    "id": "mayemie-western-rural",
+    "name": "MAYEMIE",
+    "type": "AREA",
+    "districtId": "western_rural",
+    "lat": 8.4082,
+    "lon": -13.1434,
+    "population": null
+  },
+  {
+    "id": "new-london-western-rural",
+    "name": "New London",
+    "type": "AREA",
+    "districtId": "western_rural",
+    "lat": 8.3847,
+    "lon": -13.1471,
+    "population": null
+  },
+  {
+    "id": "new-york-western-rural",
+    "name": "New York",
+    "type": "AREA",
+    "districtId": "western_rural",
+    "lat": 8.3887,
+    "lon": -13.1226,
+    "population": null
+  },
+  {
+    "id": "number-2-local-community-western-rural",
+    "name": "Number 2 Local Community",
+    "type": "AREA",
+    "districtId": "western_rural",
+    "lat": 8.3381,
+    "lon": -13.203,
+    "population": null
+  },
+  {
+    "id": "old-camp-western-rural",
+    "name": "Old Camp",
+    "type": "AREA",
+    "districtId": "western_rural",
+    "lat": 8.3914,
+    "lon": -13.156,
+    "population": null
+  },
+  {
+    "id": "tombo-western-rural",
+    "name": "Tombo",
+    "type": "AREA",
+    "districtId": "western_rural",
+    "lat": 8.2177,
+    "lon": -13.0976,
+    "population": null
+  },
+  {
+    "id": "waterloo-western-rural",
+    "name": "Waterloo",
+    "type": "CITY",
+    "districtId": "western_rural",
+    "lat": 8.339,
+    "lon": -13.0696,
+    "population": null
+  },
+  {
+    "id": "aberdeen-western-urban",
+    "name": "Aberdeen",
+    "type": "AREA",
+    "districtId": "western_urban",
+    "lat": 8.4955,
+    "lon": -13.2867,
+    "population": null
+  },
+  {
+    "id": "cline-town-western-urban",
+    "name": "Cline Town",
+    "type": "AREA",
+    "districtId": "western_urban",
+    "lat": 8.489,
+    "lon": -13.2106,
+    "population": null
+  },
+  {
+    "id": "congo-town-western-urban",
+    "name": "Congo Town",
+    "type": "AREA",
+    "districtId": "western_urban",
+    "lat": 8.4842,
+    "lon": -13.2571,
+    "population": null
+  },
+  {
+    "id": "dwarzark-western-urban",
+    "name": "Dwarzark",
+    "type": "AREA",
+    "districtId": "western_urban",
+    "lat": 8.4642,
+    "lon": -13.2302,
+    "population": null
+  },
+  {
+    "id": "freetown-western-urban",
+    "name": "Freetown",
+    "type": "CITY",
+    "districtId": "western_urban",
+    "lat": 8.479,
+    "lon": -13.2679,
+    "population": 951000
+  },
+  {
+    "id": "gloucester-western-urban",
+    "name": "Gloucester",
+    "type": "AREA",
+    "districtId": "western_urban",
+    "lat": 8.4522,
+    "lon": -13.2139,
+    "population": null
+  },
+  {
+    "id": "goderich-western-urban",
+    "name": "Goderich",
+    "type": "AREA",
+    "districtId": "western_urban",
+    "lat": 8.433,
+    "lon": -13.2889,
+    "population": null
+  },
+  {
+    "id": "hill-station-western-urban",
+    "name": "Hill Station",
+    "type": "AREA",
+    "districtId": "western_urban",
+    "lat": 8.4594,
+    "lon": -13.2539,
+    "population": null
+  },
+  {
+    "id": "kissy-western-urban",
+    "name": "Kissy",
+    "type": "AREA",
+    "districtId": "western_urban",
+    "lat": 8.4686,
+    "lon": -13.1893,
+    "population": null
+  },
+  {
+    "id": "leicester-village-western-urban",
+    "name": "Leicester Village",
+    "type": "AREA",
+    "districtId": "western_urban",
+    "lat": 8.4611,
+    "lon": -13.2187,
+    "population": null
+  },
+  {
+    "id": "lower-sorie-western-urban",
+    "name": "Lower Sorie",
+    "type": "AREA",
+    "districtId": "western_urban",
+    "lat": 8.4718,
+    "lon": -13.2297,
+    "population": null
+  },
+  {
+    "id": "lumley-western-urban",
+    "name": "Lumley",
+    "type": "AREA",
+    "districtId": "western_urban",
+    "lat": 8.456,
+    "lon": -13.2714,
+    "population": null
+  },
+  {
+    "id": "lungi-town-western-urban",
+    "name": "Lungi-Town",
+    "type": "TOWN",
+    "districtId": "western_urban",
+    "lat": 8.6402,
+    "lon": -13.2266,
+    "population": null
+  },
+  {
+    "id": "murray-town-western-urban",
+    "name": "Murray Town",
+    "type": "AREA",
+    "districtId": "western_urban",
+    "lat": 8.4916,
+    "lon": -13.2653,
+    "population": null
+  },
+  {
+    "id": "new-england-western-urban",
+    "name": "New England",
+    "type": "AREA",
+    "districtId": "western_urban",
+    "lat": 8.4676,
+    "lon": -13.2366,
+    "population": null
+  },
+  {
+    "id": "omolay-bush-western-urban",
+    "name": "Omolay Bush",
+    "type": "AREA",
+    "districtId": "western_urban",
+    "lat": 8.4648,
+    "lon": -13.2346,
+    "population": null
+  },
+  {
+    "id": "pepel-western-urban",
+    "name": "Pepel",
+    "type": "TOWN",
+    "districtId": "western_urban",
+    "lat": 8.5867,
+    "lon": -13.0553,
+    "population": 6469
+  },
+  {
+    "id": "regent-western-urban",
+    "name": "Regent",
+    "type": "AREA",
+    "districtId": "western_urban",
+    "lat": 8.4355,
+    "lon": -13.2185,
+    "population": null
+  },
+  {
+    "id": "sami-town-western-urban",
+    "name": "Sami Town",
+    "type": "AREA",
+    "districtId": "western_urban",
+    "lat": 8.4666,
+    "lon": -13.2265,
+    "population": null
+  },
+  {
+    "id": "samura-town-western-urban",
+    "name": "Samura Town",
+    "type": "TOWN",
+    "districtId": "western_urban",
+    "lat": 8.4415,
+    "lon": -13.1774,
+    "population": null
+  },
+  {
+    "id": "sumalia-town-western-urban",
+    "name": "Sumalia Town",
+    "type": "TOWN",
+    "districtId": "western_urban",
+    "lat": 8.4678,
+    "lon": -13.2297,
+    "population": null
+  },
+  {
+    "id": "temne-town-western-urban",
+    "name": "Temne Town",
+    "type": "TOWN",
+    "districtId": "western_urban",
+    "lat": 8.4077,
+    "lon": -13.1538,
+    "population": null
+  },
+  {
+    "id": "tintafor-western-urban",
+    "name": "Tintafor",
+    "type": "TOWN",
+    "districtId": "western_urban",
+    "lat": 8.6284,
+    "lon": -13.2173,
+    "population": null
+  },
+  {
+    "id": "wellington-western-urban",
+    "name": "Wellington",
+    "type": "AREA",
+    "districtId": "western_urban",
+    "lat": 8.4476,
+    "lon": -13.1706,
+    "population": null
+  },
+  {
+    "id": "wilberforce-western-urban",
+    "name": "Wilberforce",
+    "type": "AREA",
+    "districtId": "western_urban",
+    "lat": 8.4754,
+    "lon": -13.2636,
+    "population": null
+  },
+  {
+    "id": "wongo-town-western-urban",
+    "name": "Wongo Town",
+    "type": "TOWN",
+    "districtId": "western_urban",
+    "lat": 8.4578,
+    "lon": -13.1961,
+    "population": null
+  }
+]

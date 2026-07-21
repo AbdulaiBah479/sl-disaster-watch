@@ -1,26 +1,105 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand: deep blue + calm teal, soft neutral surfaces. */
+  --brand-primary: #0b3556;
+  --brand-primary-strong: #082943;
+  --brand-teal: #0d9488;
+  --brand-teal-soft: #ccfbf1;
+
+  --background: #f3f5f7;
+  --surface: #ffffff;
+  --surface-raised: #ffffff;
+  --foreground: #101828;
+  --muted: #667085;
+  --border: #e4e7ec;
+  --border-strong: #d0d5dd;
+  --sidebar-bg: #0b2942;
+  --sidebar-fg: #cfe0ee;
+  --sidebar-fg-active: #ffffff;
+  --sidebar-active-bg: rgba(255, 255, 255, 0.08);
+
+  /* Status palette — fixed, never themed (see dataviz skill palette.md). */
+  --status-good: #0ca30c;
+  --status-warning: #fab219;
+  --status-serious: #ec835a;
+  --status-critical: #d03b3b;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-brand-primary: var(--brand-primary);
+  --color-brand-teal: var(--brand-teal);
+  --color-border: var(--border);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0b1220;
+    --surface: #121a2b;
+    --surface-raised: #16213380;
+    --foreground: #e7ecf3;
+    --muted: #93a0b4;
+    --border: #223047;
+    --border-strong: #2c3c58;
+    --sidebar-bg: #060e1a;
+    --sidebar-fg: #9fb3c8;
+    --sidebar-fg-active: #ffffff;
+    --sidebar-active-bg: rgba(255, 255, 255, 0.06);
   }
+}
+
+* {
+  border-color: var(--border);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+/* Utility surface classes used across the shell/cards, so components don't
+   have to hand-roll light/dark pairs everywhere. */
+.surface-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.text-muted {
+  color: var(--muted);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 8px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--brand-teal);
+  outline-offset: 2px;
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+.live-dot {
+  animation: pulse-dot 2s ease-in-out infinite;
 }

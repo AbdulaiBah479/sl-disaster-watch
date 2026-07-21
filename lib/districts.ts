@@ -1,0 +1,303 @@
+// Static reference data for Sierra Leone's 16 districts (2017 boundary reform:
+// Falaba split from Koinadugu, Karene split from Bombali/Kambia/Port Loko).
+//
+// Sources: Statistics Sierra Leone 2015 census (population/area), Wikipedia
+// "Districts of Sierra Leone", World Bank / PreventionWeb disaster risk
+// diagnostic note (landslide-prone Western Area hills), FAO country brief
+// (dominant crops by agroecological zone).
+//
+// `vulnerabilityIndex` is an ILLUSTRATIVE composite (0-1, higher = more
+// vulnerable) approximating relative poverty, infrastructure and health-access
+// gaps between districts. It is a stand-in for a real INFORM/DHS subnational
+// vulnerability index and should be replaced with official microdata before
+// any operational use.
+export type LandslideRisk = "low" | "medium" | "high";
+
+export interface DistrictSeed {
+  id: string;
+  name: string;
+  province: string;
+  capital: string;
+  areaKm2: number;
+  population: number;
+  lat: number;
+  lon: number;
+  coastal: boolean;
+  riverine: boolean;
+  landslideRisk: LandslideRisk;
+  vulnerabilityIndex: number;
+  primaryCrops: string[];
+  livestockPresent: boolean;
+}
+
+export const DISTRICTS: DistrictSeed[] = [
+  {
+    id: "kailahun",
+    name: "Kailahun",
+    province: "Eastern",
+    capital: "Kailahun",
+    areaKm2: 3940,
+    population: 526379,
+    lat: 8.2833,
+    lon: -10.5667,
+    coastal: false,
+    riverine: true,
+    landslideRisk: "low",
+    vulnerabilityIndex: 0.62,
+    primaryCrops: ["rice", "cocoa", "coffee", "cassava"],
+    livestockPresent: true,
+  },
+  {
+    id: "kenema",
+    name: "Kenema",
+    province: "Eastern",
+    capital: "Kenema",
+    areaKm2: 6345,
+    population: 609891,
+    lat: 7.8767,
+    lon: -11.19,
+    coastal: false,
+    riverine: true,
+    landslideRisk: "medium",
+    vulnerabilityIndex: 0.55,
+    primaryCrops: ["rice", "cocoa", "coffee", "oil palm"],
+    livestockPresent: true,
+  },
+  {
+    id: "kono",
+    name: "Kono",
+    province: "Eastern",
+    capital: "Koidu Town",
+    areaKm2: 5391,
+    population: 506100,
+    lat: 8.6435,
+    lon: -10.9714,
+    coastal: false,
+    riverine: true,
+    landslideRisk: "medium",
+    vulnerabilityIndex: 0.6,
+    primaryCrops: ["rice", "cassava"],
+    livestockPresent: true,
+  },
+  {
+    id: "bombali",
+    name: "Bombali",
+    province: "Northern",
+    capital: "Makeni",
+    areaKm2: 3876,
+    population: 606544,
+    lat: 8.8847,
+    lon: -12.0439,
+    coastal: false,
+    riverine: true,
+    landslideRisk: "low",
+    vulnerabilityIndex: 0.5,
+    primaryCrops: ["rice", "groundnuts", "cassava"],
+    livestockPresent: true,
+  },
+  {
+    id: "falaba",
+    name: "Falaba",
+    province: "Northern",
+    capital: "Bendugu",
+    areaKm2: 7423,
+    population: 205353,
+    lat: 9.8333,
+    lon: -11.15,
+    coastal: false,
+    riverine: true,
+    landslideRisk: "medium",
+    vulnerabilityIndex: 0.72,
+    primaryCrops: ["rice", "millet", "groundnuts"],
+    livestockPresent: true,
+  },
+  {
+    id: "koinadugu",
+    name: "Koinadugu",
+    province: "Northern",
+    capital: "Kabala",
+    areaKm2: 4951,
+    population: 409372,
+    lat: 9.5833,
+    lon: -11.55,
+    coastal: false,
+    riverine: true,
+    landslideRisk: "medium",
+    vulnerabilityIndex: 0.68,
+    primaryCrops: ["rice", "potatoes"],
+    livestockPresent: true,
+  },
+  {
+    id: "tonkolili",
+    name: "Tonkolili",
+    province: "Northern",
+    capital: "Magburaka",
+    areaKm2: 6288,
+    population: 531435,
+    lat: 8.7167,
+    lon: -11.95,
+    coastal: false,
+    riverine: true,
+    landslideRisk: "low",
+    vulnerabilityIndex: 0.58,
+    primaryCrops: ["rice", "cassava"],
+    livestockPresent: true,
+  },
+  {
+    id: "kambia",
+    name: "Kambia",
+    province: "North West",
+    capital: "Kambia",
+    areaKm2: 3031,
+    population: 345474,
+    lat: 9.1167,
+    lon: -12.9167,
+    coastal: true,
+    riverine: true,
+    landslideRisk: "low",
+    vulnerabilityIndex: 0.6,
+    primaryCrops: ["mangrove swamp rice", "groundnuts"],
+    livestockPresent: true,
+  },
+  {
+    id: "karene",
+    name: "Karene",
+    province: "North West",
+    capital: "Kamakwie",
+    areaKm2: 5828,
+    population: 350000,
+    lat: 9.3667,
+    lon: -12.15,
+    coastal: false,
+    riverine: true,
+    landslideRisk: "low",
+    vulnerabilityIndex: 0.7,
+    primaryCrops: ["rice", "groundnuts"],
+    livestockPresent: true,
+  },
+  {
+    id: "port_loko",
+    name: "Port Loko",
+    province: "North West",
+    capital: "Port Loko",
+    areaKm2: 5719,
+    population: 615376,
+    lat: 8.7667,
+    lon: -12.7833,
+    coastal: true,
+    riverine: true,
+    landslideRisk: "low",
+    vulnerabilityIndex: 0.55,
+    primaryCrops: ["rice", "oil palm"],
+    livestockPresent: true,
+  },
+  {
+    id: "bo",
+    name: "Bo",
+    province: "Southern",
+    capital: "Bo",
+    areaKm2: 5463,
+    population: 575478,
+    lat: 7.9558,
+    lon: -11.7383,
+    coastal: false,
+    riverine: true,
+    landslideRisk: "low",
+    vulnerabilityIndex: 0.5,
+    primaryCrops: ["rice", "cocoa", "coffee", "oil palm"],
+    livestockPresent: true,
+  },
+  {
+    id: "bonthe",
+    name: "Bonthe",
+    province: "Southern",
+    capital: "Bonthe",
+    areaKm2: 3547,
+    population: 200781,
+    lat: 7.5264,
+    lon: -12.505,
+    coastal: true,
+    riverine: true,
+    landslideRisk: "low",
+    vulnerabilityIndex: 0.7,
+    primaryCrops: ["rice"],
+    livestockPresent: true,
+  },
+  {
+    id: "moyamba",
+    name: "Moyamba",
+    province: "Southern",
+    capital: "Moyamba",
+    areaKm2: 7012,
+    population: 318588,
+    lat: 8.1597,
+    lon: -12.4344,
+    coastal: true,
+    riverine: true,
+    landslideRisk: "low",
+    vulnerabilityIndex: 0.63,
+    primaryCrops: ["rice", "oil palm"],
+    livestockPresent: true,
+  },
+  {
+    id: "pujehun",
+    name: "Pujehun",
+    province: "Southern",
+    capital: "Pujehun",
+    areaKm2: 4179,
+    population: 346461,
+    lat: 7.35,
+    lon: -11.7167,
+    coastal: true,
+    riverine: true,
+    landslideRisk: "low",
+    vulnerabilityIndex: 0.65,
+    primaryCrops: ["rice", "oil palm", "cocoa"],
+    livestockPresent: true,
+  },
+  {
+    id: "western_rural",
+    name: "Western Area Rural",
+    province: "Western Area",
+    capital: "Waterloo",
+    areaKm2: 1228,
+    population: 444270,
+    lat: 8.3378,
+    lon: -13.0725,
+    coastal: true,
+    riverine: false,
+    landslideRisk: "high",
+    vulnerabilityIndex: 0.55,
+    primaryCrops: ["vegetables"],
+    livestockPresent: true,
+  },
+  {
+    id: "western_urban",
+    name: "Western Area Urban",
+    province: "Western Area",
+    capital: "Freetown",
+    areaKm2: 82,
+    population: 1055964,
+    lat: 8.4657,
+    lon: -13.2317,
+    coastal: true,
+    riverine: false,
+    landslideRisk: "high",
+    vulnerabilityIndex: 0.5,
+    primaryCrops: [],
+    livestockPresent: false,
+  },
+];
+
+export function findDistrict(id: string): DistrictSeed | undefined {
+  return DISTRICTS.find((d) => d.id === id);
+}
+
+// Bounding box used to scope external API queries (USGS, GDACS, FIRMS) to
+// the Sierra Leone region with a small buffer.
+export const SIERRA_LEONE_BBOX = {
+  minLat: 6.7,
+  maxLat: 10.1,
+  minLon: -13.6,
+  maxLon: -10.2,
+};

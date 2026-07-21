@@ -39,3 +39,18 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+/app/generated/prisma
+
+# sqlite (regenerated on every build via prisma migrate deploy + seed + ingest)
+dev.db
+dev.db-journal
+dev.db-wal
+dev.db-shm
+
+# netlify
+.netlify
+
+# editor / build logs
+.vscode
+*.log
