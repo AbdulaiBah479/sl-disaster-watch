@@ -13,7 +13,7 @@ const globalForPrisma = globalThis as unknown as {
 // from there instead of the read-only deploy path.
 function resolveDatabaseUrl(): string {
   const configured = process.env.DATABASE_URL ?? "file:./dev.db";
-  if (process.env.NETLIFY && configured.startsWith("file:")) {
+  if (process.env.LAMBDA_TASK_ROOT && configured.startsWith("file:")) {
     const source = path.resolve(
       /* turbopackIgnore: true */ process.cwd(),
       configured.slice("file:".length),

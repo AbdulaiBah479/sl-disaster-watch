@@ -25,7 +25,7 @@ interface ComputedRow {
   drivers: string;
 }
 
-function densityExposureMap(): Map<string, number> {
+export function densityExposureMap(): Map<string, number> {
   const densities = DISTRICTS.map((d) => d.population / d.areaKm2);
   const min = Math.min(...densities);
   const max = Math.max(...densities);
@@ -58,12 +58,12 @@ export async function persistSignals(results: SourceResult[]): Promise<number> {
 // Low elevation concentrates runoff and is where floodwater actually
 // collects — a well-established exposure multiplier for flood risk
 // specifically. 0m -> +40% exposure, ~100m -> neutral, 250m+ -> floor.
-function elevationExposureFactor(elevation: number | null | undefined): number {
+export function elevationExposureFactor(elevation: number | null | undefined): number {
   if (elevation == null) return 1;
   return clamp(1.4 - elevation / 250, 0.7, 1.4);
 }
 
-const ELEVATION_SENSITIVE_CATEGORIES = new Set<HazardCategory>(["FLOOD_RIVER", "FLOOD_COASTAL"]);
+export const ELEVATION_SENSITIVE_CATEGORIES = new Set<HazardCategory>(["FLOOD_RIVER", "FLOOD_COASTAL"]);
 
 export async function computeAndPersistRiskScores(
   results: SourceResult[],

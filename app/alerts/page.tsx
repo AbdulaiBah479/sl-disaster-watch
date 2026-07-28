@@ -26,10 +26,25 @@ export default function AlertsPage() {
   const [categoryFilter, setCategoryFilter] = useState<string>("ALL");
 
   useEffect(() => {
-    fetch("/api/alerts")
-      .then((r) => r.json())
-      .then(setAlerts)
-      .finally(() => setLoading(false));
+    let cancelled = false;
+    function load() {
+      fetch("/api/alerts")
+        .then((r) => r.json())
+        .then((data) => {
+          if (!cancelled) setAlerts(data);
+        })
+        .finally(() => {
+          if (!cancelled) setLoading(false);
+        });
+    }
+    load();
+    const id = setInterval(() => {
+      if (document.visibilityState === "visible") load();
+    }, 90_000);
+    return () => {
+      cancelled = true;
+      clearInterval(id);
+    };
   }, []);
 
   const filtered = useMemo(

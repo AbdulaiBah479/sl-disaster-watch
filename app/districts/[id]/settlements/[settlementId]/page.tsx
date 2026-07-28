@@ -1,10 +1,13 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
-import { getLatestRiskScores, getSettlementRiskHistory } from "@/lib/queries";
+import { getLatestRiskScores, getSettlementRiskHistory, getLatestForecasts } from "@/lib/queries";
 import { RiskBadge } from "@/components/RiskBadge";
 import { Sparkline } from "@/components/Sparkline";
+import { ConfidenceBadge } from "@/components/ConfidenceBadge";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { SatelliteSnapshot } from "@/components/SatelliteSnapshot";
+import { AutoRefresh } from "@/components/AutoRefresh";
 import { HAZARD_GUIDANCE, guidanceIntro } from "@/lib/recommendations";
 import { SETTLEMENT_TYPE_LABELS, type SettlementType } from "@/lib/settlements";
 import { HAZARD_LIST, scoreToLevel, type HazardCategory, type RiskLevel } from "@/lib/hazards";
@@ -26,7 +29,7 @@ export default async function SettlementPage({
   });
   if (!settlement || settlement.districtId !== id) notFound();
 
-  const [ownScores, districtLatest, reports] = await Promise.all([
+  const [ownScores, districtLatest, reports, forecasts] = await Promise.all([
     prisma.settlementRiskScore.findMany({
       where: { settlementId },
       orderBy: { computedAt: "desc" },
@@ -37,7 +40,15 @@ export default async function SettlementPage({
       orderBy: { createdAt: "desc" },
       take: 20,
     }),
+    getLatestForecasts({ settlementId }),
   ]);
+
+  const forecastByCategory = new Map<HazardCategory, typeof forecasts>();
+  for (const f of forecasts) {
+    const list = forecastByCategory.get(f.category) ?? [];
+    list.push(f);
+    forecastByCategory.set(f.category, list);
+  }
 
   const seen = new Set<string>();
   const latestOwn = ownScores.filter((r) => {
@@ -60,6 +71,7 @@ export default async function SettlementPage({
 
   return (
     <div className="mx-auto max-w-5xl space-y-8 px-4 py-6 sm:px-6">
+      <AutoRefresh />
       <Breadcrumbs
         items={[
           { label: "Dashboard", href: "/" },
@@ -105,6 +117,8 @@ export default async function SettlementPage({
                 const guidance = HAZARD_GUIDANCE[category];
                 const drivers = JSON.parse(r.drivers) as { notes: string[] };
                 const series = historyMap.get(category) ?? [];
+                const categoryForecasts = forecastByCategory.get(category) ?? [];
+                const badgeForecast = categoryForecasts.find((f) => f.horizonDays === 3) ?? categoryForecasts[0];
                 return (
                   <tr key={category}>
                     <td className="px-3 py-2 align-top">
@@ -115,7 +129,24 @@ export default async function SettlementPage({
                       <RiskBadge level={level} score={r.score} size="sm" />
                     </td>
                     <td className="px-3 py-2 align-top">
-                      <Sparkline series={series} level={level} />
+                      <Sparkline
+                        series={series}
+                        level={level}
+                        forecast={categoryForecasts.map((f) => ({
+                          horizonDays: f.horizonDays,
+                          score: f.predictedScore,
+                          level: f.predictedLevel,
+                        }))}
+                      />
+                      {badgeForecast && (
+                        <div className="mt-1">
+                          <ConfidenceBadge
+                            confidence={badgeForecast.confidence}
+                            basis={badgeForecast.basis}
+                            method={badgeForecast.method}
+                          />
+                        </div>
+                      )}
                     </td>
                     <td className="px-3 py-2 align-top text-xs">
                       <p className="text-muted">{drivers.notes?.[0]}</p>
@@ -146,6 +177,13 @@ export default async function SettlementPage({
               )}
             </tbody>
           </table>
+        </div>
+      </section>
+
+      <section>
+        <h2 className="mb-3 text-lg font-semibold">Satellite Snapshot</h2>
+        <div className="max-w-md rounded-xl p-4 surface-card">
+          <SatelliteSnapshot label={settlement.name} lat={settlement.lat} lon={settlement.lon} bboxDegrees={0.15} />
         </div>
       </section>
 

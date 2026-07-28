@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 
 interface Entry {
   id: string;
@@ -12,6 +12,7 @@ interface Entry {
 
 export function SearchBar() {
   const router = useRouter();
+  const pathname = usePathname();
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState(false);
   const [entries, setEntries] = useState<Entry[]>([]);
@@ -55,10 +56,11 @@ export function SearchBar() {
       ? entries.filter((e) => e.name.toLowerCase().includes(query.trim().toLowerCase())).slice(0, 8)
       : [];
 
-  function go(href: string) {
+  function go(entry: Entry) {
     setQuery("");
     setOpen(false);
-    router.push(href);
+    // On the map page, search recenters the map instead of navigating away.
+    router.push(pathname === "/map" ? `/map?focus=${entry.id}` : entry.href);
   }
 
   return (
@@ -82,7 +84,7 @@ export function SearchBar() {
           {results.map((r) => (
             <button
               key={r.href}
-              onClick={() => go(r.href)}
+              onClick={() => go(r)}
               className="flex w-full items-center justify-between px-3 py-2 text-left text-sm transition hover:bg-black/[.03] dark:hover:bg-white/[.05]"
             >
               <span>{r.name}</span>

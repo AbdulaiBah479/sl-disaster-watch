@@ -6,6 +6,11 @@ import { DISTRICTS } from "@/lib/districts";
 import { clamp } from "@/lib/geo";
 import type { SignalCandidate, SourceResult } from "./types";
 
+const PAST_DAYS = 14;
+// forecast_days counts today as day 0, so 8 gives us today + the next 7
+// days — exactly what the +1/+3/+7 day prediction horizons need.
+const FORECAST_DAYS = 8;
+
 interface OpenMeteoDaily {
   time: string[];
   precipitation_sum: (number | null)[];
@@ -17,21 +22,37 @@ interface OpenMeteoLocation {
   daily: OpenMeteoDaily;
 }
 
+// One forward-looking day of rainfall/wind, keyed by district — this is
+// the real forecast data the live signals above only use day 0 of; the
+// prediction engine (lib/predictionEngine.ts) uses the remaining days.
+export interface WeatherForecastDay {
+  dayOffset: number; // 0 = today, 1..7 = days ahead
+  precipitationMm: number;
+  windGustKmh: number;
+}
+
+export interface WeatherSourceOutput {
+  result: SourceResult;
+  weatherForecastByDistrict: Map<string, WeatherForecastDay[]>;
+}
+
 function sum(values: (number | null)[]): number {
   return values.reduce((acc: number, v) => acc + (v ?? 0), 0);
 }
 
-export async function fetchOpenMeteoWeatherSignals(): Promise<SourceResult> {
+export async function fetchOpenMeteoWeatherSignals(): Promise<WeatherSourceOutput> {
   const lat = DISTRICTS.map((d) => d.lat).join(",");
   const lon = DISTRICTS.map((d) => d.lon).join(",");
   const params = new URLSearchParams({
     latitude: lat,
     longitude: lon,
     daily: "precipitation_sum,wind_speed_10m_max,wind_gusts_10m_max",
-    past_days: "14",
-    forecast_days: "3",
+    past_days: String(PAST_DAYS),
+    forecast_days: String(FORECAST_DAYS),
     timezone: "auto",
   });
+
+  const weatherForecastByDistrict = new Map<string, WeatherForecastDay[]>();
 
   try {
     const res = await fetch(
@@ -47,12 +68,15 @@ export async function fetchOpenMeteoWeatherSignals(): Promise<SourceResult> {
     DISTRICTS.forEach((district, i) => {
       const loc = locations[i];
       if (!loc?.daily) return;
+      const daily = loc.daily;
+      // The response is chronological: PAST_DAYS entries, then FORECAST_DAYS
+      // entries starting with today — so today's index is always
+      // (length - FORECAST_DAYS), regardless of minor API off-by-ones.
+      const todayIdx = Math.max(0, daily.time.length - FORECAST_DAYS);
 
-      const rain14d = sum(loc.daily.precipitation_sum);
-      const rain72h = sum(loc.daily.precipitation_sum.slice(-5, -2)); // last 3 recorded past days
-      const maxGust = Math.max(
-        ...loc.daily.wind_gusts_10m_max.map((v) => v ?? 0),
-      );
+      const rain14d = sum(daily.precipitation_sum.slice(0, todayIdx));
+      const rain72h = sum(daily.precipitation_sum.slice(Math.max(0, todayIdx - 2), todayIdx + 1));
+      const maxGust = Math.max(0, ...daily.wind_gusts_10m_max.slice(todayIdx).map((v) => v ?? 0));
 
       // River / flash flood: heavy 14-day accumulation, weighted toward riverine districts.
       const floodValue = clamp(
@@ -102,21 +126,39 @@ export async function fetchOpenMeteoWeatherSignals(): Promise<SourceResult> {
         metadata: { maxGust },
         observedAt: new Date(),
       });
+
+      const forecastDays: WeatherForecastDay[] = [];
+      for (let offset = 0; offset < FORECAST_DAYS; offset++) {
+        const idx = todayIdx + offset;
+        if (idx >= daily.time.length) break;
+        forecastDays.push({
+          dayOffset: offset,
+          precipitationMm: daily.precipitation_sum[idx] ?? 0,
+          windGustKmh: daily.wind_gusts_10m_max[idx] ?? 0,
+        });
+      }
+      weatherForecastByDistrict.set(district.id, forecastDays);
     });
 
     return {
-      source: "OPEN_METEO_WEATHER",
-      signals,
-      itemsFetched: locations.length,
-      status: "success",
+      result: {
+        source: "OPEN_METEO_WEATHER",
+        signals,
+        itemsFetched: locations.length,
+        status: "success",
+      },
+      weatherForecastByDistrict,
     };
   } catch (err) {
     return {
-      source: "OPEN_METEO_WEATHER",
-      signals: [],
-      itemsFetched: 0,
-      status: "error",
-      message: err instanceof Error ? err.message : String(err),
+      result: {
+        source: "OPEN_METEO_WEATHER",
+        signals: [],
+        itemsFetched: 0,
+        status: "error",
+        message: err instanceof Error ? err.message : String(err),
+      },
+      weatherForecastByDistrict,
     };
   }
 }

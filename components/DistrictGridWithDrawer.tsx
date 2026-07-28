@@ -5,6 +5,7 @@ import Link from "next/link";
 import { DistrictCard } from "@/components/DistrictCard";
 import { RiskBadge } from "@/components/RiskBadge";
 import { Drawer } from "@/components/Drawer";
+import { SatelliteSnapshot } from "@/components/SatelliteSnapshot";
 import { HAZARD_LIST, scoreToLevel } from "@/lib/hazards";
 import { HAZARD_GUIDANCE } from "@/lib/recommendations";
 import type { DistrictWithRisk } from "@/lib/types";
@@ -35,6 +36,8 @@ export function DistrictGridWithDrawer({ districts }: { districts: DistrictWithR
               <span className="text-sm text-muted">Overall risk</span>
               <RiskBadge level={scoreToLevel(active.overallRisk)} score={active.overallRisk} />
             </div>
+
+            <SatelliteSnapshot label={active.name} lat={active.lat} lon={active.lon} bboxDegrees={0.35} />
 
             <div className="space-y-3">
               {topScores.map((r) => {

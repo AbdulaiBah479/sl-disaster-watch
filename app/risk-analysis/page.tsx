@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { getLatestRiskScores } from "@/lib/queries";
+import { AutoRefresh } from "@/components/AutoRefresh";
 import { RiskBarChart } from "@/components/charts/RiskBarChart";
 import { SeverityDonut } from "@/components/charts/SeverityDonut";
 import { HAZARD_LIST, scoreToLevel, type RiskLevel, type HazardCategory } from "@/lib/hazards";
@@ -44,6 +45,7 @@ export default async function RiskAnalysisPage() {
 
   return (
     <div className="mx-auto max-w-5xl space-y-8 px-4 py-6 sm:px-6">
+      <AutoRefresh />
       <div>
         <h1 className="text-2xl font-bold">Risk Analysis</h1>
         <p className="mt-1 text-sm text-muted">

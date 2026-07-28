@@ -1,9 +1,11 @@
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
-import { getLatestRiskScores } from "@/lib/queries";
+import { getLatestRiskScores, getRisingRiskWatchlist } from "@/lib/queries";
 import { RefreshButton } from "@/components/RefreshButton";
+import { AutoRefresh } from "@/components/AutoRefresh";
 import { MapLoader } from "@/components/MapLoader";
 import { AlertList } from "@/components/AlertList";
+import { RisingRiskWatchlist } from "@/components/RisingRiskWatchlist";
 import { StatCard } from "@/components/StatCard";
 import { RiskBarChart } from "@/components/charts/RiskBarChart";
 import { SeverityDonut } from "@/components/charts/SeverityDonut";
@@ -14,7 +16,7 @@ import type { DistrictWithRisk } from "@/lib/types";
 export const dynamic = "force-dynamic";
 
 async function getDashboardData() {
-  const [districts, riskScores, alerts, lastRun, settlementCount, recentDisasters] = await Promise.all([
+  const [districts, riskScores, alerts, lastRun, settlementCount, recentDisasters, risingRisk] = await Promise.all([
     prisma.district.findMany({ orderBy: { name: "asc" } }),
     getLatestRiskScores(),
     prisma.alert.findMany({
@@ -25,6 +27,7 @@ async function getDashboardData() {
     prisma.ingestionRun.findFirst({ orderBy: { startedAt: "desc" } }),
     prisma.settlement.count(),
     prisma.historicalDisaster.findMany({ orderBy: { date: "desc" }, take: 4, include: { district: true } }),
+    getRisingRiskWatchlist(),
   ]);
 
   const byDistrict = new Map<string, typeof riskScores>();
@@ -49,11 +52,20 @@ async function getDashboardData() {
   const SEVERITY_RANK: Record<string, number> = { RED: 3, ORANGE: 2, YELLOW: 1, GREEN: 0 };
   alerts.sort((a, b) => SEVERITY_RANK[b.level] - SEVERITY_RANK[a.level]);
 
-  return { districts: enriched, alerts, lastRun, hasData: riskScores.length > 0, settlementCount, recentDisasters };
+  return {
+    districts: enriched,
+    alerts,
+    lastRun,
+    hasData: riskScores.length > 0,
+    settlementCount,
+    recentDisasters,
+    risingRisk: risingRisk.slice(0, 8),
+  };
 }
 
 export default async function DashboardPage() {
-  const { districts, alerts, lastRun, hasData, settlementCount, recentDisasters } = await getDashboardData();
+  const { districts, alerts, lastRun, hasData, settlementCount, recentDisasters, risingRisk } =
+    await getDashboardData();
   const sorted = [...districts].sort((a, b) => b.overallRisk - a.overallRisk);
   const domains = ["land", "ocean", "air", "biological"] as const;
 
@@ -65,6 +77,7 @@ export default async function DashboardPage() {
 
   return (
     <div className="mx-auto max-w-7xl space-y-8 px-4 py-6 sm:px-6">
+      <AutoRefresh />
       <section className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
         <div>
           <h1 className="text-2xl font-bold">Sierra Leone Multi-Hazard Dashboard</h1>
@@ -148,6 +161,15 @@ export default async function DashboardPage() {
             }))}
           />
         </div>
+      </section>
+
+      <section>
+        <h2 className="mb-1 text-lg font-semibold">⚠️ Rising Risk Watch (next 3–7 days)</h2>
+        <p className="mb-3 text-xs text-muted">
+          Places currently Safe/Caution whose predicted trajectory (statistical trend + real forecast
+          data) crosses into Warning/Critical — see a place&apos;s Trend column for the full projection.
+        </p>
+        <RisingRiskWatchlist entries={risingRisk} />
       </section>
 
       <section>

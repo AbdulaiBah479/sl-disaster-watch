@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic";
 import type { DistrictWithRisk } from "@/lib/types";
+import type { FlyTarget } from "@/components/MapFlyTo";
 
 const MapView = dynamic(() => import("./MapView").then((m) => m.MapView), {
   ssr: false,
@@ -12,6 +13,14 @@ const MapView = dynamic(() => import("./MapView").then((m) => m.MapView), {
   ),
 });
 
-export function MapLoader({ districts }: { districts: DistrictWithRisk[] }) {
-  return <MapView districts={districts} />;
+export function MapLoader({
+  districts,
+  enableScrollZoom = false,
+  initialFocus = null,
+}: {
+  districts: DistrictWithRisk[];
+  enableScrollZoom?: boolean;
+  initialFocus?: FlyTarget | null;
+}) {
+  return <MapView districts={districts} enableScrollZoom={enableScrollZoom} initialFocus={initialFocus} />;
 }

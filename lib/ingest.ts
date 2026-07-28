@@ -2,6 +2,7 @@ import { prisma } from "@/lib/prisma";
 import { runAllSources } from "@/lib/sources";
 import { persistSignals, computeAndPersistRiskScores } from "@/lib/riskEngine";
 import { computeSettlementFloodDroughtRisk } from "@/lib/settlementRiskEngine";
+import { computeAndPersistForecasts, computeAndPersistSettlementForecasts } from "@/lib/predictionEngine";
 import { backfillElevations } from "@/lib/elevationBackfill";
 
 export interface IngestSummary {
@@ -10,6 +11,7 @@ export interface IngestSummary {
   totalSignals: number;
   totalRiskScores: number;
   settlementScoresComputed: number;
+  forecastsComputed: number;
   elevationsBackfilled: number;
   sources: {
     source: string;
@@ -22,16 +24,22 @@ export interface IngestSummary {
 export async function runIngestion(): Promise<IngestSummary> {
   const startedAt = new Date();
 
-  const [results, elevationsBackfilled] = await Promise.all([
-    runAllSources(),
-    backfillElevations(),
-  ]);
+  const [{ results, floodForecastByPointId, weatherForecastByDistrict }, elevationsBackfilled] =
+    await Promise.all([runAllSources(), backfillElevations()]);
 
   const [totalSignals, riskRows] = await Promise.all([
     persistSignals(results),
     computeAndPersistRiskScores(results),
   ]);
   const { scoresComputed: settlementScoresComputed } = await computeSettlementFloodDroughtRisk();
+
+  // Forecasts must run after the above — the trend regression needs this
+  // run's fresh RiskScore/SettlementRiskScore rows already persisted.
+  const [forecastRows, settlementForecastRows] = await Promise.all([
+    computeAndPersistForecasts({ floodForecastByPointId, weatherForecastByDistrict }),
+    computeAndPersistSettlementForecasts({ floodForecastByPointId }),
+  ]);
+  const forecastsComputed = forecastRows.length + settlementForecastRows.length;
 
   await prisma.ingestionRun.createMany({
     data: [
@@ -51,6 +59,22 @@ export async function runIngestion(): Promise<IngestSummary> {
         startedAt,
         finishedAt: new Date(),
       },
+      {
+        source: "PREDICTION_ENGINE",
+        status: "success",
+        itemsFetched: forecastRows.length,
+        message: null,
+        startedAt,
+        finishedAt: new Date(),
+      },
+      {
+        source: "SETTLEMENT_PREDICTION_ENGINE",
+        status: "success",
+        itemsFetched: settlementForecastRows.length,
+        message: null,
+        startedAt,
+        finishedAt: new Date(),
+      },
     ],
   });
 
@@ -62,6 +86,7 @@ export async function runIngestion(): Promise<IngestSummary> {
     totalSignals,
     totalRiskScores: riskRows.length,
     settlementScoresComputed,
+    forecastsComputed,
     elevationsBackfilled,
     sources: results.map((r) => ({
       source: r.source,

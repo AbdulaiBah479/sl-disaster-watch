@@ -1,10 +1,13 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
-import { getLatestRiskScores, getRiskHistory, getLatestSettlementRiskScores } from "@/lib/queries";
+import { getLatestRiskScores, getRiskHistory, getLatestSettlementRiskScores, getLatestForecasts } from "@/lib/queries";
 import { RiskBadge } from "@/components/RiskBadge";
 import { Sparkline } from "@/components/Sparkline";
+import { ConfidenceBadge } from "@/components/ConfidenceBadge";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { SatelliteSnapshot } from "@/components/SatelliteSnapshot";
+import { AutoRefresh } from "@/components/AutoRefresh";
 import { HAZARD_GUIDANCE, guidanceIntro } from "@/lib/recommendations";
 import { SETTLEMENT_TYPE_LABELS, type SettlementType } from "@/lib/settlements";
 import { HAZARD_LIST, scoreToLevel, type HazardCategory } from "@/lib/hazards";
@@ -20,13 +23,21 @@ export default async function DistrictPage({
   const district = await prisma.district.findUnique({ where: { id } });
   if (!district) notFound();
 
-  const [allLatest, disasters, reports, settlements, settlementScores] = await Promise.all([
+  const [allLatest, disasters, reports, settlements, settlementScores, forecasts] = await Promise.all([
     getLatestRiskScores(),
     prisma.historicalDisaster.findMany({ where: { districtId: id }, orderBy: { date: "desc" } }),
     prisma.citizenReport.findMany({ where: { districtId: id }, orderBy: { createdAt: "desc" }, take: 20 }),
     prisma.settlement.findMany({ where: { districtId: id }, orderBy: [{ type: "asc" }, { name: "asc" }] }),
     getLatestSettlementRiskScores(),
+    getLatestForecasts({ districtId: id }),
   ]);
+
+  const forecastByCategory = new Map<HazardCategory, typeof forecasts>();
+  for (const f of forecasts) {
+    const list = forecastByCategory.get(f.category) ?? [];
+    list.push(f);
+    forecastByCategory.set(f.category, list);
+  }
 
   const riskScores = allLatest.filter((r) => r.districtId === id);
   const overall =
@@ -54,6 +65,7 @@ export default async function DistrictPage({
 
   return (
     <div className="mx-auto max-w-5xl space-y-8 px-4 py-6 sm:px-6">
+      <AutoRefresh />
       <Breadcrumbs items={[{ label: "Dashboard", href: "/" }, { label: district.name }]} />
 
       <div className="flex flex-wrap items-start justify-between gap-4">
@@ -92,6 +104,8 @@ export default async function DistrictPage({
                 const meta = HAZARD_LIST.find((h) => h.category === r.category)!;
                 const guidance = HAZARD_GUIDANCE[r.category];
                 const series = historyMap.get(r.category) ?? [];
+                const categoryForecasts = forecastByCategory.get(r.category) ?? [];
+                const badgeForecast = categoryForecasts.find((f) => f.horizonDays === 3) ?? categoryForecasts[0];
                 return (
                   <tr key={r.category}>
                     <td className="px-3 py-2 align-top">
@@ -102,7 +116,24 @@ export default async function DistrictPage({
                       <RiskBadge level={r.level} score={r.score} size="sm" />
                     </td>
                     <td className="px-3 py-2 align-top">
-                      <Sparkline series={series} level={r.level} />
+                      <Sparkline
+                        series={series}
+                        level={r.level}
+                        forecast={categoryForecasts.map((f) => ({
+                          horizonDays: f.horizonDays,
+                          score: f.predictedScore,
+                          level: f.predictedLevel,
+                        }))}
+                      />
+                      {badgeForecast && (
+                        <div className="mt-1">
+                          <ConfidenceBadge
+                            confidence={badgeForecast.confidence}
+                            basis={badgeForecast.basis}
+                            method={badgeForecast.method}
+                          />
+                        </div>
+                      )}
                     </td>
                     <td className="px-3 py-2 align-top text-xs">
                       <p className="text-muted">{r.drivers.notes?.[0]}</p>
@@ -134,6 +165,13 @@ export default async function DistrictPage({
               )}
             </tbody>
           </table>
+        </div>
+      </section>
+
+      <section>
+        <h2 className="mb-3 text-lg font-semibold">Satellite Snapshot</h2>
+        <div className="max-w-md rounded-xl p-4 surface-card">
+          <SatelliteSnapshot label={district.name} lat={district.lat} lon={district.lon} bboxDegrees={0.35} />
         </div>
       </section>
 

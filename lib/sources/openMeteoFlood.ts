@@ -9,6 +9,9 @@
 import { clamp } from "@/lib/geo";
 import type { SignalCandidate, SourceResult } from "./types";
 
+// forecast_days counts today as day 0, so 8 gives today + the next 7 days.
+const FORECAST_DAYS = 8;
+
 interface FloodDaily {
   time: string[];
   river_discharge: (number | null)[];
@@ -25,19 +28,33 @@ export interface FloodQueryPoint {
   lon: number;
 }
 
+// One forward-looking day of discharge vs. seasonal median — the real
+// forecast data the live FLOOD_RIVER signal only uses day 0 of; the
+// prediction engine (lib/predictionEngine.ts) uses the remaining days.
+export interface FloodForecastDay {
+  dayOffset: number; // 0 = today, 1..7 = days ahead
+  discharge: number;
+  median: number;
+}
+
 export async function fetchFloodDischargeSignals(
   points: FloodQueryPoint[],
-): Promise<{ result: SourceResult; byPointId: Map<string, SignalCandidate> }> {
+): Promise<{
+  result: SourceResult;
+  byPointId: Map<string, SignalCandidate>;
+  forecastByPointId: Map<string, FloodForecastDay[]>;
+}> {
   const lat = points.map((p) => p.lat).join(",");
   const lon = points.map((p) => p.lon).join(",");
   const params = new URLSearchParams({
     latitude: lat,
     longitude: lon,
     daily: "river_discharge,river_discharge_median",
-    forecast_days: "3",
+    forecast_days: String(FORECAST_DAYS),
   });
 
   const byPointId = new Map<string, SignalCandidate>();
+  const forecastByPointId = new Map<string, FloodForecastDay[]>();
 
   try {
     const res = await fetch(
@@ -72,6 +89,17 @@ export async function fetchFloodDischargeSignals(
         metadata: { discharge, median, ratio },
         observedAt: new Date(),
       });
+
+      const forecastDays: FloodForecastDay[] = [];
+      if (daily) {
+        for (let offset = 0; offset < FORECAST_DAYS; offset++) {
+          const d = daily.river_discharge?.[offset];
+          const m = daily.river_discharge_median?.[offset];
+          if (d == null || m == null || m <= 0) continue;
+          forecastDays.push({ dayOffset: offset, discharge: d, median: m });
+        }
+      }
+      forecastByPointId.set(p.id, forecastDays);
     });
 
     return {
@@ -82,6 +110,7 @@ export async function fetchFloodDischargeSignals(
         status: "success",
       },
       byPointId,
+      forecastByPointId,
     };
   } catch (err) {
     return {
@@ -93,6 +122,7 @@ export async function fetchFloodDischargeSignals(
         message: err instanceof Error ? err.message : String(err),
       },
       byPointId,
+      forecastByPointId,
     };
   }
 }

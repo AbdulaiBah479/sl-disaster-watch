@@ -35,6 +35,7 @@ model District {
   reports       CitizenReport[]
   disasters     HistoricalDisaster[]
   settlements   Settlement[]
+  forecasts     RiskForecast[]
 
   @@map("districts")
 }
@@ -55,6 +56,7 @@ model Settlement {
   riskScores SettlementRiskScore[]
   reports    CitizenReport[]
   alerts     Alert[]
+  forecasts  RiskForecast[]
 
   @@index([districtId])
   @@map("settlements")
@@ -137,6 +139,34 @@ model SettlementRiskScore {
 
   @@index([settlementId, category, computedAt])
   @@map("settlement_risk_scores")
+}
+
+// Predictive risk trajectory log — a statistical trend + real-forecast
+// ensemble (lib/predictionEngine.ts), NOT an LLM/black-box model. Append-only,
+// one row per (place, category, horizon) each ingestion run, generated
+// immediately after that run's RiskScore/SettlementRiskScore rows so the
+// trend regression sees the freshest data point. `basis` and `method`
+// document exactly what backed each prediction, in keeping with this
+// project's "every figure traces to a cited source or a labeled model
+// baseline" approach — never presented as more authoritative than it is.
+model RiskForecast {
+  id             String         @id @default(cuid())
+  districtId     String
+  district       District       @relation(fields: [districtId], references: [id])
+  settlementId   String?
+  settlement     Settlement?    @relation(fields: [settlementId], references: [id])
+  category       HazardCategory
+  horizonDays    Int // 1 | 3 | 7
+  predictedScore Float // 0-100
+  predictedLevel RiskLevel
+  confidence     Float // 0-100, see computeConfidence() in lib/predictionEngine.ts
+  basis          String // "TREND_ONLY" | "FORECAST_ENSEMBLE"
+  method         String // human-readable explanation shown in the UI
+  generatedAt    DateTime       @default(now())
+
+  @@index([districtId, category, horizonDays, generatedAt])
+  @@index([settlementId, category, horizonDays, generatedAt])
+  @@map("risk_forecasts")
 }
 
 model Alert {
