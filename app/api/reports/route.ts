@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { prisma } from "@/lib/prisma";
+import { requireSession } from "@/lib/auth";
 
 export const dynamic = "force-dynamic";
 
@@ -51,7 +52,11 @@ export async function POST(req: Request) {
   return NextResponse.json(report, { status: 201 });
 }
 
+// Admin-only: lists reporter name/contact (PII) alongside every report.
 export async function GET(req: Request) {
+  const auth = await requireSession();
+  if (auth instanceof NextResponse) return auth;
+
   const { searchParams } = new URL(req.url);
   const status = searchParams.get("status");
   const reports = await prisma.citizenReport.findMany({

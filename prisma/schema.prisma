@@ -258,3 +258,31 @@ model PushSubscription {
 
   @@map("push_subscriptions")
 }
+
+// Institutional accounts (report moderators, agency staff) — provisioned via
+// `npm run db:create-admin`, not self-registration. Sierra Leone disaster
+// agencies would need real accounts before any of them relies on /admin.
+model User {
+  id           String    @id @default(cuid())
+  email        String    @unique
+  passwordHash String
+  name         String?
+  createdAt    DateTime  @default(now())
+  sessions     Session[]
+
+  @@map("users")
+}
+
+// Server-side session store — the cookie holds only this row's id (a random
+// token, not the DB's default cuid), so a session is revocable by deleting
+// the row and expiry is enforced on every lookup. See lib/auth.ts.
+model Session {
+  id        String   @id
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@map("sessions")
+}

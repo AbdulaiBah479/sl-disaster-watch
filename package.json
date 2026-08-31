@@ -12,6 +12,7 @@
     "lint": "eslint",
     "db:seed": "tsx prisma/seed.ts",
     "db:ingest": "tsx scripts/run-ingest.ts",
+    "db:create-admin": "tsx scripts/create-admin.ts",
     "netlify-build": "prisma generate && prisma migrate deploy && npm run db:seed && npm run db:ingest && next build"
   },
   "prisma": {

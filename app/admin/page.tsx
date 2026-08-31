@@ -53,9 +53,7 @@ export default function AdminPage() {
       <div>
         <h1 className="text-2xl font-bold">Admin — Report Moderation</h1>
         <p className="mt-1 text-sm text-muted">
-          Review community incident reports submitted via the public reporting form. This demo has no
-          authentication layer — a production deployment would gate this page behind an authenticated
-          role.
+          Review community incident reports submitted via the public reporting form.
         </p>
       </div>
 

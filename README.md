@@ -87,6 +87,22 @@ subscription in `PushSubscription`). Requires the VAPID keypair in
 npx web-push generate-vapid-keys
 ```
 
+### Admin access
+
+`/admin` (report moderation) is gated behind a real session — no self
+sign-up, since institutional accounts should be provisioned deliberately,
+not opened to anyone who finds the URL. Create the first account with:
+
+```bash
+npm run db:create-admin -- you@example.com "a strong password (12+ chars)" "Optional Name"
+```
+
+Sessions are server-side rows (`Session` model), so revoking access is a
+delete, not a token-expiry wait — an admin session lasts 7 days and is
+carried by an `httpOnly` cookie (`lib/auth.ts`); passwords are hashed with
+Node's built-in `scrypt`, no extra dependency. `GET/PATCH /api/reports*`
+enforce the same session server-side, not just the page.
+
 ## What's here
 
 - **Enterprise dashboard shell** — sidebar navigation, top bar with live
@@ -139,6 +155,10 @@ lib/push.ts                  → Web Push sender, called from syncAlerts() on
                              every new/escalated Alert; prunes dead subscriptions
 lib/agencies.ts               → real Sierra Leone + international disaster
                              agencies, each source-cited; powers /agencies
+lib/auth.ts                   → password hashing (scrypt) + server-side
+                             sessions; requireSession() gates mutating routes
+app/admin/layout.tsx           → page-level gate — redirects to /login if
+                             there's no valid session
 lib/ingest.ts                → orchestrates a full pull + persists everything;
                              runIngestionIfDue() is the shared min-interval gate
 instrumentation.ts            → in-process scheduler — see "Keeping data
