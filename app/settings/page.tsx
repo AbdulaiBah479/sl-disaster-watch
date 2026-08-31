@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import { formatDateTime } from "@/lib/format";
 
 export const dynamic = "force-dynamic";
 
@@ -99,7 +100,7 @@ export default async function SettingsPage() {
                   <td className="px-4 py-2 font-medium">{r.source}</td>
                   <td className="px-4 py-2 text-xs">{r.status}</td>
                   <td className="px-4 py-2 text-xs">{r.itemsFetched}</td>
-                  <td className="px-4 py-2 text-xs text-muted">{new Date(r.startedAt).toLocaleString()}</td>
+                  <td className="px-4 py-2 text-xs text-muted">{formatDateTime(r.startedAt)}</td>
                 </tr>
               ))}
               {runs.length === 0 && (

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { HAZARD_LIST } from "@/lib/hazards";
+import { formatDateTime } from "@/lib/format";
 
 interface Report {
   id: string;
@@ -90,7 +91,7 @@ export default function AdminPage() {
                     {meta?.icon} {meta?.label} — {r.settlement ? `${r.settlement.name}, ` : ""}
                     {r.district.name}
                   </span>
-                  <span className="text-xs text-muted">{new Date(r.createdAt).toLocaleString()}</span>
+                  <span className="text-xs text-muted">{formatDateTime(r.createdAt)}</span>
                 </div>
                 <p className="mt-1.5 text-sm text-muted">{r.description}</p>
                 {r.reporterName && (

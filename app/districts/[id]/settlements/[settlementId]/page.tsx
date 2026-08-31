@@ -11,6 +11,7 @@ import { AutoRefresh } from "@/components/AutoRefresh";
 import { HAZARD_GUIDANCE, guidanceIntro } from "@/lib/recommendations";
 import { SETTLEMENT_TYPE_LABELS, type SettlementType } from "@/lib/settlements";
 import { HAZARD_LIST, scoreToLevel, type HazardCategory, type RiskLevel } from "@/lib/hazards";
+import { formatDateTime, formatNumber } from "@/lib/format";
 
 export const dynamic = "force-dynamic";
 
@@ -86,7 +87,7 @@ export default async function SettlementPage({
           <p className="text-sm text-muted">
             {SETTLEMENT_TYPE_LABELS[settlement.type as SettlementType]} in {settlement.district.name},{" "}
             {settlement.district.province} Province
-            {settlement.population ? ` · pop. ${settlement.population.toLocaleString()}` : ""}
+            {settlement.population ? ` · pop. ${formatNumber(settlement.population)}` : ""}
             {settlement.elevation != null ? ` · ~${Math.round(settlement.elevation)} m elevation` : ""}
           </p>
         </div>
@@ -228,7 +229,7 @@ export default async function SettlementPage({
               <li key={r.id} className="rounded-lg p-3 text-sm surface-card">
                 <div className="flex items-center justify-between">
                   <span className="font-medium">{HAZARD_LIST.find((h) => h.category === r.category)?.label}</span>
-                  <span className="text-xs text-muted">{new Date(r.createdAt).toLocaleString()}</span>
+                  <span className="text-xs text-muted">{formatDateTime(r.createdAt)}</span>
                 </div>
                 <p className="mt-1 text-muted">{r.description}</p>
               </li>

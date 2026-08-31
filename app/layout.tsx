@@ -28,8 +28,13 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
-      <body className="min-h-full">
+      {/* Browser extensions (Grammarly, dark-mode toggles, password managers) commonly
+          inject attributes into <html>/<body> before React hydrates — suppressHydrationWarning
+          on these two elements silences the resulting false-positive attribute-mismatch
+          warning without hiding a genuine content mismatch anywhere else in the tree. */}
+      <body className="min-h-full" suppressHydrationWarning>
         <AppShell>{children}</AppShell>
       </body>
     </html>

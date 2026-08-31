@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { formatDate } from "@/lib/format";
 
 export function LiveClock() {
   const [now, setNow] = useState<Date | null>(null);
@@ -23,7 +24,7 @@ export function LiveClock() {
   return (
     <div className="hidden items-center gap-1.5 text-xs text-muted md:flex">
       <span className="live-dot h-1.5 w-1.5 rounded-full" style={{ background: "var(--status-good)" }} />
-      {now.toLocaleString(undefined, { weekday: "short", hour: "2-digit", minute: "2-digit" })}
+      {formatDate(now, { weekday: "short", hour: "2-digit", minute: "2-digit" })}
     </div>
   );
 }

@@ -11,6 +11,7 @@ import { AutoRefresh } from "@/components/AutoRefresh";
 import { HAZARD_GUIDANCE, guidanceIntro } from "@/lib/recommendations";
 import { SETTLEMENT_TYPE_LABELS, type SettlementType } from "@/lib/settlements";
 import { HAZARD_LIST, scoreToLevel, type HazardCategory } from "@/lib/hazards";
+import { formatDate, formatDateTime, formatNumber } from "@/lib/format";
 
 export const dynamic = "force-dynamic";
 
@@ -73,7 +74,7 @@ export default async function DistrictPage({
           <h1 className="text-2xl font-bold">{district.name}</h1>
           <p className="text-sm text-muted">
             {district.province} Province · Capital: {district.capital} · Population{" "}
-            {district.population.toLocaleString()} · {district.areaKm2.toLocaleString()} km²
+            {formatNumber(district.population)} · {formatNumber(district.areaKm2)} km²
             {district.elevation != null ? ` · ~${Math.round(district.elevation)} m elevation` : ""}
           </p>
           <div className="mt-2 flex flex-wrap gap-1.5 text-xs text-muted">
@@ -225,14 +226,14 @@ export default async function DistrictPage({
             {disasters.map((d) => (
               <li key={d.id} className="rounded-lg p-3 text-sm surface-card">
                 <p className="font-medium">
-                  {d.title} <span className="font-normal text-muted">— {new Date(d.date).toLocaleDateString()}</span>
+                  {d.title} <span className="font-normal text-muted">— {formatDate(d.date)}</span>
                 </p>
                 <p className="mt-1 text-muted">{d.description}</p>
                 {(d.deaths || d.affected) && (
                   <p className="mt-1 text-xs text-muted">
-                    {d.deaths ? `${d.deaths.toLocaleString()} deaths` : ""}
+                    {d.deaths ? `${formatNumber(d.deaths)} deaths` : ""}
                     {d.deaths && d.affected ? " · " : ""}
-                    {d.affected ? `${d.affected.toLocaleString()} affected` : ""}
+                    {d.affected ? `${formatNumber(d.affected)} affected` : ""}
                   </p>
                 )}
                 <p className="mt-1 text-xs text-muted">Source: {d.source}</p>
@@ -257,7 +258,7 @@ export default async function DistrictPage({
               <li key={r.id} className="rounded-lg p-3 text-sm surface-card">
                 <div className="flex items-center justify-between">
                   <span className="font-medium">{HAZARD_LIST.find((h) => h.category === r.category)?.label}</span>
-                  <span className="text-xs text-muted">{new Date(r.createdAt).toLocaleString()}</span>
+                  <span className="text-xs text-muted">{formatDateTime(r.createdAt)}</span>
                 </div>
                 <p className="mt-1 text-muted">{r.description}</p>
                 <p className="mt-1 text-xs uppercase tracking-wide text-muted">{r.status}</p>

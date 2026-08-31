@@ -12,6 +12,7 @@ import { SeverityDonut } from "@/components/charts/SeverityDonut";
 import { DistrictGridWithDrawer } from "@/components/DistrictGridWithDrawer";
 import { DOMAIN_LABELS, HAZARD_LIST, scoreToLevel, type RiskLevel } from "@/lib/hazards";
 import type { DistrictWithRisk } from "@/lib/types";
+import { formatDateTime, formatDate } from "@/lib/format";
 
 export const dynamic = "force-dynamic";
 
@@ -87,7 +88,7 @@ export default async function DashboardPage() {
           </p>
           <p className="mt-2 text-xs text-muted">
             {lastRun
-              ? `Last data pull: ${new Date(lastRun.startedAt).toLocaleString()}`
+              ? `Last data pull: ${formatDateTime(lastRun.startedAt)}`
               : "No data yet — click Refresh live data to run the first ingestion."}
           </p>
         </div>
@@ -197,7 +198,7 @@ export default async function DashboardPage() {
                   <div>
                     <p className="font-medium">{d.title}</p>
                     <p className="text-xs text-muted">
-                      {new Date(d.date).toLocaleDateString()} {d.district ? `· ${d.district.name}` : ""}
+                      {formatDate(d.date)} {d.district ? `· ${d.district.name}` : ""}
                     </p>
                   </div>
                 </li>

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { RiskBadge } from "@/components/RiskBadge";
 import { HAZARDS } from "@/lib/hazards";
 import type { RiskLevel } from "@/lib/hazards";
+import { formatDateTime } from "@/lib/format";
 
 interface AlertItem {
   id: string;
@@ -41,7 +42,7 @@ export function AlertList({ alerts }: { alerts: AlertItem[] }) {
                 <Link href={href} className="font-medium hover:underline">
                   {place}
                 </Link>
-                <span className="text-xs text-muted">{new Date(a.issuedAt).toLocaleString()}</span>
+                <span className="text-xs text-muted">{formatDateTime(a.issuedAt)}</span>
               </div>
               <p className="mt-0.5 text-sm text-muted">{a.message}</p>
             </div>

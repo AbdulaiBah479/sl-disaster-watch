@@ -13,6 +13,7 @@ import { Drawer } from "@/components/Drawer";
 import { SatelliteSnapshot } from "@/components/SatelliteSnapshot";
 import { MapFlyTo, type FlyTarget } from "@/components/MapFlyTo";
 import type { DistrictWithRisk } from "@/lib/types";
+import { formatNumber } from "@/lib/format";
 
 const BOUNDARY_STYLE = {
   color: "#78716c",
@@ -187,7 +188,7 @@ export function MapView({
                 <div className="min-w-[180px] text-sm">
                   <p className="font-semibold">{d.name}</p>
                   <p className="text-stone-500">
-                    {d.province} · pop. {d.population.toLocaleString()}
+                    {d.province} · pop. {formatNumber(d.population)}
                   </p>
                   <p className="mt-1">
                     Overall risk: <strong>{Math.round(d.overallRisk)}/100</strong> ({meta.label})

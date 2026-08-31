@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import { prisma } from "@/lib/prisma";
 import { ReportForm } from "@/components/ReportForm";
 import { HAZARD_LIST } from "@/lib/hazards";
+import { formatDate } from "@/lib/format";
 
 export const dynamic = "force-dynamic";
 
@@ -49,7 +50,7 @@ export default async function ReportPage() {
                         {r.district.name}
                       </span>
                       <span className="shrink-0 text-xs text-muted">
-                        {new Date(r.createdAt).toLocaleDateString()}
+                        {formatDate(r.createdAt)}
                       </span>
                     </div>
                     <p className="mt-1 line-clamp-2 text-muted">{r.description}</p>

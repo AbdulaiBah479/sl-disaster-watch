@@ -9,6 +9,7 @@ import { SatelliteSnapshot } from "@/components/SatelliteSnapshot";
 import { HAZARD_LIST, scoreToLevel } from "@/lib/hazards";
 import { HAZARD_GUIDANCE } from "@/lib/recommendations";
 import type { DistrictWithRisk } from "@/lib/types";
+import { formatNumber } from "@/lib/format";
 
 export function DistrictGridWithDrawer({ districts }: { districts: DistrictWithRisk[] }) {
   const [active, setActive] = useState<DistrictWithRisk | null>(null);
@@ -28,7 +29,7 @@ export function DistrictGridWithDrawer({ districts }: { districts: DistrictWithR
         open={active != null}
         onClose={() => setActive(null)}
         title={active?.name ?? ""}
-        subtitle={active ? `${active.province} · pop. ${active.population.toLocaleString()}` : undefined}
+        subtitle={active ? `${active.province} · pop. ${formatNumber(active.population)}` : undefined}
       >
         {active && (
           <div className="space-y-5">

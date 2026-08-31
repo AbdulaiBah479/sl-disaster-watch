@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import { HAZARD_LIST } from "@/lib/hazards";
+import { formatDate, formatNumber } from "@/lib/format";
 
 export const dynamic = "force-dynamic";
 
@@ -31,7 +32,7 @@ export default async function HistoryPage() {
                 style={{ background: "var(--border-strong)" }}
               />
               <p className="text-xs font-medium text-muted">
-                {new Date(d.date).toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" })}
+                {formatDate(d.date, { year: "numeric", month: "long", day: "numeric" })}
               </p>
               <h2 className="mt-0.5 font-semibold">
                 {meta?.icon} {d.title}
@@ -48,9 +49,9 @@ export default async function HistoryPage() {
               <p className="mt-1 text-sm text-muted">{d.description}</p>
               {(d.deaths || d.affected) && (
                 <p className="mt-1 text-xs text-muted">
-                  {d.deaths ? `${d.deaths.toLocaleString()} deaths` : ""}
+                  {d.deaths ? `${formatNumber(d.deaths)} deaths` : ""}
                   {d.deaths && d.affected ? " · " : ""}
-                  {d.affected ? `${d.affected.toLocaleString()} affected` : ""}
+                  {d.affected ? `${formatNumber(d.affected)} affected` : ""}
                 </p>
               )}
               <p className="mt-1 text-xs text-muted">

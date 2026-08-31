@@ -8,10 +8,7 @@ import {
   worldviewDeepLink,
   type SatelliteLayerConfig,
 } from "@/lib/satellite";
-
-function formatDate(d: Date): string {
-  return d.toLocaleDateString(undefined, { month: "short", day: "numeric" });
-}
+import { formatDate } from "@/lib/format";
 
 export function SatelliteSnapshot({
   label,
@@ -98,7 +95,7 @@ export function SatelliteSnapshot({
               border: "1px solid var(--border)",
             }}
           >
-            {formatDate(d)}
+            {formatDate(d, { month: "short", day: "numeric" })}
           </button>
         ))}
       </div>
