@@ -46,11 +46,20 @@ RELIEFWEB_APPNAME=...    # https://apidoc.reliefweb.int/parameters#appname
 ### Keeping data fresh automatically
 
 `POST /api/ingest` re-pulls every source and recomputes risk — it's wired to
-two triggers:
+three triggers:
 
 - The dashboard's **Refresh live data** button (manual, on demand).
-- `.github/workflows/ingest-cron.yml`, a GitHub Actions schedule that hits it
-  every 15 minutes. Set it up once you've deployed:
+- **In-process scheduler** (`instrumentation.ts`) — arms a `setInterval` the
+  moment the Next.js server boots, re-running ingestion every
+  `INGEST_AUTO_INTERVAL_MINUTES` (default 15) for as long as the process
+  stays up. This is what keeps data fresh with **zero setup** on `next dev`
+  and on any persistently-running deployment (self-hosted `next start`,
+  Docker, Fly.io, Railway, Render).
+- `.github/workflows/ingest-cron.yml`, a GitHub Actions schedule that hits
+  the endpoint every 15 minutes over HTTP. **This is the one that matters
+  for Netlify** — Netlify Functions are stateless/serverless, so they don't
+  keep a process alive for `setInterval` to fire in; the in-process
+  scheduler is effectively a no-op there. Set it up once you've deployed:
   1. Deploy the site (e.g. to Netlify — see below).
   2. In the GitHub repo: **Settings → Secrets and variables → Actions →
      Variables** → add `SITE_URL` = your deployed URL (e.g.
@@ -58,10 +67,11 @@ two triggers:
   3. That's it — the workflow runs on its own schedule, or trigger it manually
      from the **Actions** tab (`workflow_dispatch`).
 
-Both triggers share one endpoint, so `INGEST_MIN_INTERVAL_MINUTES` (default
-10, in `.env`) guards against overlapping runs hammering the free external
-APIs — a call that arrives too soon after the last one is skipped and
-reports why, instead of re-fetching everything.
+All three triggers call the same gated `runIngestionIfDue()`
+(`lib/ingest.ts`), so `INGEST_MIN_INTERVAL_MINUTES` (default 10, in `.env`)
+guards against overlapping runs hammering the free external APIs no matter
+which trigger fires first — a call that arrives too soon after the last one
+is skipped and reports why, instead of re-fetching everything.
 
 ### Real-time alert notifications
 
@@ -103,6 +113,11 @@ npx web-push generate-vapid-keys
 - **Push notifications** — opt in via the 🛎️ icon in the top bar to get a
   browser notification the moment a new Warning/Critical alert fires,
   without checking the dashboard. See "Real-time alert notifications" below.
+- **Disaster agency directory** (`/agencies`) — every real Sierra Leone
+  coordinating body (NDMA, ONS, SLMet, Red Cross, NPHA, EPA-SL and more) plus
+  the international/technical partners this dashboard already cites,
+  grouped by hazard coverage with mandate, hotline/website and a source
+  citation per entry — see `lib/agencies.ts`.
 
 ## Architecture
 
@@ -122,7 +137,12 @@ lib/recommendations.ts      → hazard cause + recommended-action knowledge base
 lib/satellite.ts            → NASA GIBS layer config consumed by the map
 lib/push.ts                  → Web Push sender, called from syncAlerts() on
                              every new/escalated Alert; prunes dead subscriptions
-lib/ingest.ts                → orchestrates a full pull + persists everything
+lib/agencies.ts               → real Sierra Leone + international disaster
+                             agencies, each source-cited; powers /agencies
+lib/ingest.ts                → orchestrates a full pull + persists everything;
+                             runIngestionIfDue() is the shared min-interval gate
+instrumentation.ts            → in-process scheduler — see "Keeping data
+                             fresh automatically" below
 app/api/ingest               → POST triggers the pipeline above; scheduled by
                              .github/workflows/ingest-cron.yml
 app/api/push/subscribe       → POST saves a browser's Web Push subscription

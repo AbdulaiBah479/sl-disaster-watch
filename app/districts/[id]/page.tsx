@@ -149,7 +149,12 @@ export default async function DistrictPage({
                               <li key={i}>{rec}</li>
                             ))}
                           </ul>
-                          <p className="text-[11px]">Coordinating bodies: {guidance.responsibleBodies.join(", ")}</p>
+                          <p className="text-[11px]">
+                            Coordinating bodies: {guidance.responsibleBodies.join(", ")} —{" "}
+                            <Link href="/agencies" className="underline" style={{ color: "var(--brand-teal)" }}>
+                              full directory
+                            </Link>
+                          </p>
                         </div>
                       </details>
                     </td>

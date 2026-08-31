@@ -21,6 +21,33 @@ export interface IngestSummary {
   }[];
 }
 
+export interface IngestSkipped {
+  skipped: true;
+  reason: string;
+}
+
+const MIN_INTERVAL_MINUTES = Number(process.env.INGEST_MIN_INTERVAL_MINUTES ?? 10);
+
+// Shared gate used by both POST /api/ingest (manual button + GitHub Actions
+// cron) and the in-process scheduler in instrumentation.ts, so no matter
+// which trigger fires, overlapping runs can't double up against the free
+// external APIs.
+export async function runIngestionIfDue(): Promise<IngestSummary | IngestSkipped> {
+  const lastRun = await prisma.ingestionRun.findFirst({
+    orderBy: { startedAt: "desc" },
+  });
+  if (lastRun) {
+    const minutesSince = (Date.now() - lastRun.startedAt.getTime()) / 60_000;
+    if (minutesSince < MIN_INTERVAL_MINUTES) {
+      return {
+        skipped: true,
+        reason: `Last ingestion ran ${minutesSince.toFixed(1)} min ago; minimum interval is ${MIN_INTERVAL_MINUTES} min.`,
+      };
+    }
+  }
+  return runIngestion();
+}
+
 export async function runIngestion(): Promise<IngestSummary> {
   const startedAt = new Date();
 

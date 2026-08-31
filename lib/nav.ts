@@ -12,6 +12,7 @@ export const NAV_ITEMS: NavItem[] = [
   { label: "Reports", href: "/report", icon: "\u{1F4DD}", mobilePrimary: true },
   { label: "Risk Analysis", href: "/risk-analysis", icon: "\u{1F4CA}" },
   { label: "History", href: "/history", icon: "\u{1F4DC}" },
+  { label: "Agencies", href: "/agencies", icon: "\u{1F3DB}️" },
   { label: "Admin", href: "/admin", icon: "\u{1F6E1}️" },
   { label: "Settings", href: "/settings", icon: "⚙️" },
   { label: "Help & Sources", href: "/about", icon: "❓", mobilePrimary: true },
