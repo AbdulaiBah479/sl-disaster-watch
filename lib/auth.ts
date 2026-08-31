@@ -2,7 +2,7 @@ import crypto from "node:crypto";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import type { User } from "@/app/generated/prisma/client";
+import type { User, Role } from "@/app/generated/prisma/client";
 
 export const SESSION_COOKIE = "sl_dw_session";
 const SESSION_TTL_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
@@ -71,4 +71,19 @@ export async function requireSession(): Promise<User | NextResponse> {
   const user = await getSessionUser();
   if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   return user;
+}
+
+// Same pattern as requireSession(), also rejecting a session whose role
+// isn't in the allowed list: `const auth = await requireRole(["ADMIN"]); if (auth instanceof NextResponse) return auth;`
+export async function requireRole(allowed: Role[]): Promise<User | NextResponse> {
+  const user = await getSessionUser();
+  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!allowed.includes(user.role)) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  return user;
+}
+
+// DISTRICT_OFFICER accounts only ever see/act on their one assigned
+// district; every other role is unrestricted.
+export function canAccessDistrict(user: User, districtId: string): boolean {
+  return user.role !== "DISTRICT_OFFICER" || user.districtId === districtId;
 }

@@ -13,7 +13,7 @@ datasource db {
 // The 16 districts of Sierra Leone. Static reference + geospatial + baseline
 // vulnerability data seeded from prisma/seed.ts (see lib/districts.ts).
 model District {
-  id                 String   @id
+  id                 String  @id
   name               String
   province           String
   capital            String
@@ -21,12 +21,12 @@ model District {
   population         Int
   lat                Float
   lon                Float
-  coastal            Boolean  @default(false)
-  riverine           Boolean  @default(false)
+  coastal            Boolean @default(false)
+  riverine           Boolean @default(false)
   landslideRisk      String // "low" | "medium" | "high"
   vulnerabilityIndex Float // 0-1 baseline composite (poverty/health-access/infra proxy)
   primaryCrops       String // JSON string array
-  livestockPresent   Boolean  @default(true)
+  livestockPresent   Boolean @default(true)
   elevation          Float? // meters, fetched once via Open-Meteo Elevation API
 
   hazardSignals HazardSignal[]
@@ -36,6 +36,7 @@ model District {
   disasters     HistoricalDisaster[]
   settlements   Settlement[]
   forecasts     RiskForecast[]
+  officers      User[]
 
   @@map("districts")
 }
@@ -183,6 +184,16 @@ model Alert {
   issuedAt     DateTime       @default(now())
   active       Boolean        @default(true)
 
+  // Set by an ADMIN/REVIEWER via POST /api/alerts/[id]/verify — an explicit
+  // human endorsement layered on top of the risk engine's algorithmic
+  // output, kept as a separate flag rather than replacing it so the
+  // distinction between "the model says" and "an agency confirmed" stays
+  // visible (see AlertList's "Agency Verified" badge).
+  official         Boolean   @default(false)
+  verifiedByUserId String?
+  verifiedBy       User?     @relation("AlertVerifiedBy", fields: [verifiedByUserId], references: [id])
+  verifiedAt       DateTime?
+
   @@index([districtId, active])
   @@map("alerts")
 }
@@ -259,18 +270,52 @@ model PushSubscription {
   @@map("push_subscriptions")
 }
 
+// ADMIN: full access, incl. user management. REVIEWER: moderates reports and
+// can mark an Alert "official" (agency-endorsed). DISTRICT_OFFICER: same as
+// REVIEWER but scoped to their one assigned district — see lib/auth.ts's
+// canAccessDistrict().
+enum Role {
+  ADMIN
+  REVIEWER
+  DISTRICT_OFFICER
+}
+
 // Institutional accounts (report moderators, agency staff) — provisioned via
 // `npm run db:create-admin`, not self-registration. Sierra Leone disaster
 // agencies would need real accounts before any of them relies on /admin.
 model User {
-  id           String    @id @default(cuid())
-  email        String    @unique
-  passwordHash String
-  name         String?
-  createdAt    DateTime  @default(now())
-  sessions     Session[]
+  id             String     @id @default(cuid())
+  email          String     @unique
+  passwordHash   String
+  name           String?
+  role           Role       @default(ADMIN)
+  districtId     String? // required in practice for DISTRICT_OFFICER; enforced in scripts/create-admin.ts, not the DB
+  district       District?  @relation(fields: [districtId], references: [id])
+  createdAt      DateTime   @default(now())
+  sessions       Session[]
+  auditLogs      AuditLog[]
+  verifiedAlerts Alert[]    @relation("AlertVerifiedBy")
 
   @@map("users")
+}
+
+// Records every moderation/verification action taken through /admin — who,
+// what, on which record, when. Append-only; nothing here is ever updated or
+// deleted. This is what makes an agency comfortable relying on the system:
+// every status change traces to a named account, not an anonymous button.
+model AuditLog {
+  id         String   @id @default(cuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id])
+  action     String // e.g. "REPORT_VERIFIED", "REPORT_DISMISSED", "ALERT_MARKED_OFFICIAL", "USER_CREATED"
+  targetType String // "CitizenReport" | "Alert" | "User"
+  targetId   String
+  metadata   String? // JSON blob, e.g. { from: "PENDING", to: "VERIFIED" }
+  createdAt  DateTime @default(now())
+
+  @@index([userId])
+  @@index([targetType, targetId])
+  @@map("audit_logs")
 }
 
 // Server-side session store — the cookie holds only this row's id (a random

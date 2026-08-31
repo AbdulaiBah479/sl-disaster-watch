@@ -87,21 +87,34 @@ subscription in `PushSubscription`). Requires the VAPID keypair in
 npx web-push generate-vapid-keys
 ```
 
-### Admin access
+### Admin access, roles & audit trail
 
 `/admin` (report moderation) is gated behind a real session — no self
 sign-up, since institutional accounts should be provisioned deliberately,
 not opened to anyone who finds the URL. Create the first account with:
 
 ```bash
-npm run db:create-admin -- you@example.com "a strong password (12+ chars)" "Optional Name"
+npm run db:create-admin -- you@example.com "a strong password (12+ chars)" "Optional Name" [ROLE] [districtId]
 ```
 
+`ROLE` is `ADMIN` (default), `REVIEWER`, or `DISTRICT_OFFICER`. A
+`DISTRICT_OFFICER` needs a `districtId` (see `lib/districts.ts` for valid
+ids, e.g. `western_urban`) and only ever sees/moderates reports and alert
+verifications for that one district — `ADMIN`/`REVIEWER` see everything.
+Every role can moderate citizen reports and mark an `Alert` **✓ Agency
+Verified** (`POST /api/alerts/[id]/verify`) — an explicit human endorsement
+layered on top of the risk engine's algorithmic output, shown as a distinct
+badge on `/alerts` so "the model says" and "an agency confirmed" never look
+the same. Only `ADMIN` can see `/admin/audit-log`, an append-only record
+of every moderation/verification action — who, what, when
+(`AuditLog` model, `lib/auditLog.ts`).
+
 Sessions are server-side rows (`Session` model), so revoking access is a
-delete, not a token-expiry wait — an admin session lasts 7 days and is
-carried by an `httpOnly` cookie (`lib/auth.ts`); passwords are hashed with
-Node's built-in `scrypt`, no extra dependency. `GET/PATCH /api/reports*`
-enforce the same session server-side, not just the page.
+delete, not a token-expiry wait — a session lasts 7 days and is carried by
+an `httpOnly` cookie (`lib/auth.ts`); passwords are hashed with Node's
+built-in `scrypt`, no extra dependency. `GET/PATCH /api/reports*` and
+`POST /api/alerts/[id]/verify` enforce the same session + district-scope
+check server-side, not just the page.
 
 ## What's here
 
@@ -134,6 +147,10 @@ enforce the same session server-side, not just the page.
   the international/technical partners this dashboard already cites,
   grouped by hazard coverage with mandate, hotline/website and a source
   citation per entry — see `lib/agencies.ts`.
+- **Institutional roles & audit trail** — `ADMIN` / `REVIEWER` /
+  `DISTRICT_OFFICER` accounts, a district-scoped view for officers, agency
+  verification of algorithmic alerts, and an append-only audit log at
+  `/admin/audit-log`. See "Admin access, roles & audit trail" below.
 
 ## Architecture
 
@@ -156,7 +173,10 @@ lib/push.ts                  → Web Push sender, called from syncAlerts() on
 lib/agencies.ts               → real Sierra Leone + international disaster
                              agencies, each source-cited; powers /agencies
 lib/auth.ts                   → password hashing (scrypt) + server-side
-                             sessions; requireSession() gates mutating routes
+                             sessions; requireSession()/requireRole()/
+                             canAccessDistrict() gate mutating routes
+lib/auditLog.ts                → append-only log of every moderation/
+                             verification action; powers /admin/audit-log
 app/admin/layout.tsx           → page-level gate — redirects to /login if
                              there's no valid session
 lib/ingest.ts                → orchestrates a full pull + persists everything;

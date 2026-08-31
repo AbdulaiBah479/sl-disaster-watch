@@ -53,6 +53,7 @@ export async function POST(req: Request) {
 }
 
 // Admin-only: lists reporter name/contact (PII) alongside every report.
+// DISTRICT_OFFICER accounts only ever see reports for their own district.
 export async function GET(req: Request) {
   const auth = await requireSession();
   if (auth instanceof NextResponse) return auth;
@@ -60,7 +61,10 @@ export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
   const status = searchParams.get("status");
   const reports = await prisma.citizenReport.findMany({
-    where: status ? { status: status as "PENDING" | "VERIFIED" | "DISMISSED" } : undefined,
+    where: {
+      ...(status ? { status: status as "PENDING" | "VERIFIED" | "DISMISSED" } : {}),
+      ...(auth.role === "DISTRICT_OFFICER" ? { districtId: auth.districtId ?? "__none__" } : {}),
+    },
     orderBy: { createdAt: "desc" },
     take: 100,
     include: { district: true, settlement: true },

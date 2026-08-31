@@ -13,8 +13,14 @@ interface AlertItem {
   title: string;
   message: string;
   issuedAt: string;
+  official?: boolean;
   district: { name: string };
   settlement?: { name: string } | null;
+}
+
+interface SessionUser {
+  role: "ADMIN" | "REVIEWER" | "DISTRICT_OFFICER";
+  districtId: string | null;
 }
 
 const LEVELS: RiskLevel[] = ["RED", "ORANGE", "YELLOW", "GREEN"];
@@ -24,6 +30,14 @@ export default function AlertsPage() {
   const [loading, setLoading] = useState(true);
   const [levelFilter, setLevelFilter] = useState<RiskLevel | "ALL">("ALL");
   const [categoryFilter, setCategoryFilter] = useState<string>("ALL");
+  const [user, setUser] = useState<SessionUser | null>(null);
+
+  useEffect(() => {
+    fetch("/api/auth/me")
+      .then((r) => r.json())
+      .then(setUser)
+      .catch(() => setUser(null));
+  }, []);
 
   useEffect(() => {
     let cancelled = false;
@@ -46,6 +60,15 @@ export default function AlertsPage() {
       clearInterval(id);
     };
   }, []);
+
+  async function toggleOfficial(id: string, official: boolean) {
+    setAlerts((prev) => prev.map((a) => (a.id === id ? { ...a, official } : a)));
+    await fetch(`/api/alerts/${id}/verify`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ official }),
+    });
+  }
 
   const filtered = useMemo(
     () =>
@@ -105,7 +128,11 @@ export default function AlertsPage() {
       {loading ? (
         <p className="text-sm text-muted">Loading alerts…</p>
       ) : (
-        <AlertList alerts={filtered} />
+        <AlertList
+          alerts={filtered}
+          onToggleOfficial={user ? toggleOfficial : undefined}
+          canModerate={(a) => user?.role !== "DISTRICT_OFFICER" || a.districtId === user.districtId}
+        />
       )}
     </div>
   );
