@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { SearchBar } from "./SearchBar";
 import { NotificationBell } from "./NotificationBell";
+import { PushSubscribeButton } from "./PushSubscribeButton";
 import { LiveClock } from "./LiveClock";
 
 export function TopBar({ onMenuClick }: { onMenuClick: () => void }) {
@@ -34,6 +35,7 @@ export function TopBar({ onMenuClick }: { onMenuClick: () => void }) {
 
       <div className="ml-auto flex items-center gap-3">
         <LiveClock />
+        <PushSubscribeButton />
         <NotificationBell />
       </div>
     </header>

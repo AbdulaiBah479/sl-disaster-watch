@@ -16,6 +16,7 @@ import { DISTRICTS, findDistrict } from "@/lib/districts";
 import { scoreToLevel, HAZARD_LIST, type HazardCategory, type RiskLevel } from "@/lib/hazards";
 import { clamp } from "@/lib/geo";
 import type { SourceResult } from "@/lib/sources";
+import { sendPushForAlerts } from "@/lib/push";
 
 interface ComputedRow {
   districtId: string;
@@ -207,5 +208,6 @@ async function syncAlerts(rows: ComputedRow[]): Promise<void> {
 
   if (newAlerts.length > 0) {
     await prisma.alert.createMany({ data: newAlerts });
+    await sendPushForAlerts(newAlerts);
   }
 }

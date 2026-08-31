@@ -1,0 +1,26 @@
+name: Scheduled data ingestion
+
+on:
+  schedule:
+    # Every 15 minutes. The endpoint itself enforces a minimum interval
+    # (INGEST_MIN_INTERVAL_MINUTES, default 10) so overlapping triggers
+    # (this cron + a manual dashboard refresh) never double up.
+    - cron: "*/15 * * * *"
+  workflow_dispatch: {}
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: POST /api/ingest
+        run: |
+          if [ -z "${{ vars.SITE_URL }}" ]; then
+            echo "::error::Repository variable SITE_URL is not set (Settings > Secrets and variables > Actions > Variables). Point it at the deployed site, e.g. https://sl-disaster-watch.netlify.app"
+            exit 1
+          fi
+          status=$(curl -s -o /tmp/response.json -w "%{http_code}" -X POST "${{ vars.SITE_URL }}/api/ingest")
+          echo "HTTP $status"
+          cat /tmp/response.json
+          if [ "$status" -ge 300 ]; then
+            exit 1
+          fi

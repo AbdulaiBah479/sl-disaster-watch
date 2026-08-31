@@ -7,7 +7,7 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
 }
 
 // The 16 districts of Sierra Leone. Static reference + geospatial + baseline
@@ -242,4 +242,19 @@ model IngestionRun {
   finishedAt   DateTime?
 
   @@map("ingestion_runs")
+}
+
+// Browser Web Push registrations. A subscription with districtId == null
+// receives every new/escalated alert nationwide; scoping to a district
+// narrows it to that district only. Sent from lib/push.ts, triggered by
+// syncAlerts() in lib/riskEngine.ts right after a new Alert is created.
+model PushSubscription {
+  id         String   @id @default(cuid())
+  endpoint   String   @unique
+  p256dh     String
+  auth       String
+  districtId String?
+  createdAt  DateTime @default(now())
+
+  @@map("push_subscriptions")
 }

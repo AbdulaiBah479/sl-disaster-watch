@@ -1,12 +1,13 @@
 import "dotenv/config";
 import { PrismaClient } from "../app/generated/prisma/client";
-import { PrismaBetterSqlite3 } from "@prisma/adapter-better-sqlite3";
+import { PrismaPg } from "@prisma/adapter-pg";
 import { DISTRICTS } from "../lib/districts";
 import { SETTLEMENTS } from "../lib/settlements";
 
-const adapter = new PrismaBetterSqlite3({
-  url: process.env.DATABASE_URL ?? "file:./dev.db",
-});
+if (!process.env.DATABASE_URL) {
+  throw new Error("DATABASE_URL is not set — see README Quick start.");
+}
+const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
 const prisma = new PrismaClient({ adapter });
 
 // Curated historical record. Every entry below is a documented event with a

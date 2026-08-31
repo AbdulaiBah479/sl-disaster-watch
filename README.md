@@ -14,17 +14,23 @@ and place-level computation for 386 real cities, towns and named areas.
 
 ## Quick start
 
+The data layer is Postgres (a free [Neon](https://neon.tech) or
+[Supabase](https://supabase.com) project takes under a minute to create and
+gives you a `DATABASE_URL` connection string — no local Postgres install
+needed). Requires Node 20.19+/22.12+/24+ (see `.nvmrc`).
+
 ```bash
 npm install
-npx prisma migrate deploy   # or: npx prisma db push
-npm run db:seed             # seeds 16 districts, 386 settlements, historical archive
+cp .env.example .env        # fill in DATABASE_URL at minimum
+npx prisma migrate deploy
+npm run db:seed              # seeds 16 districts, 386 settlements, historical archive
 npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000), then click **Refresh live
 data** to run the first ingestion (~5-10s; pulls from USGS, GDACS, Open-Meteo
 and computes settlement-level risk — all keyless, so this works with zero
-configuration).
+API configuration once `DATABASE_URL` is set).
 
 ### Optional: enable every source
 
@@ -35,6 +41,40 @@ Two sources require a free registration; the app runs fine without them
 # .env
 FIRMS_MAP_KEY=...        # https://firms.modaps.eosdis.nasa.gov/api/map_key/
 RELIEFWEB_APPNAME=...    # https://apidoc.reliefweb.int/parameters#appname
+```
+
+### Keeping data fresh automatically
+
+`POST /api/ingest` re-pulls every source and recomputes risk — it's wired to
+two triggers:
+
+- The dashboard's **Refresh live data** button (manual, on demand).
+- `.github/workflows/ingest-cron.yml`, a GitHub Actions schedule that hits it
+  every 15 minutes. Set it up once you've deployed:
+  1. Deploy the site (e.g. to Netlify — see below).
+  2. In the GitHub repo: **Settings → Secrets and variables → Actions →
+     Variables** → add `SITE_URL` = your deployed URL (e.g.
+     `https://sl-disaster-watch.netlify.app`).
+  3. That's it — the workflow runs on its own schedule, or trigger it manually
+     from the **Actions** tab (`workflow_dispatch`).
+
+Both triggers share one endpoint, so `INGEST_MIN_INTERVAL_MINUTES` (default
+10, in `.env`) guards against overlapping runs hammering the free external
+APIs — a call that arrives too soon after the last one is skipped and
+reports why, instead of re-fetching everything.
+
+### Real-time alert notifications
+
+When the risk engine creates a new Warning/Critical alert
+(`syncAlerts()` in `lib/riskEngine.ts`), it pushes a browser notification via
+Web Push (`lib/push.ts`) to everyone subscribed — no account or app install
+needed. Click the 🛎️ icon in the top bar to opt in (prompts for browser
+notification permission, registers `public/sw.js`, and stores the
+subscription in `PushSubscription`). Requires the VAPID keypair in
+`.env`/Netlify env vars; generate one with:
+
+```bash
+npx web-push generate-vapid-keys
 ```
 
 ## What's here
@@ -60,6 +100,9 @@ RELIEFWEB_APPNAME=...    # https://apidoc.reliefweb.int/parameters#appname
   Agriculture, etc.) — see `lib/recommendations.ts`.
 - **Citizen reporting** (`/report`) — Ushahidi-style incident reports,
   taggable down to the settlement level, reviewed via `/admin`.
+- **Push notifications** — opt in via the 🛎️ icon in the top bar to get a
+  browser notification the moment a new Warning/Critical alert fires,
+  without checking the dashboard. See "Real-time alert notifications" below.
 
 ## Architecture
 
@@ -77,12 +120,17 @@ lib/settlementRiskEngine.ts → same composite formula computed per settlement f
 lib/elevationBackfill.ts    → one-time-per-point elevation fetch, cached in DB
 lib/recommendations.ts      → hazard cause + recommended-action knowledge base
 lib/satellite.ts            → NASA GIBS layer config consumed by the map
+lib/push.ts                  → Web Push sender, called from syncAlerts() on
+                             every new/escalated Alert; prunes dead subscriptions
 lib/ingest.ts                → orchestrates a full pull + persists everything
-app/api/ingest               → POST triggers the pipeline above
+app/api/ingest               → POST triggers the pipeline above; scheduled by
+                             .github/workflows/ingest-cron.yml
+app/api/push/subscribe       → POST saves a browser's Web Push subscription
+app/api/push/unsubscribe     → POST removes one
 app/api/*                    → read endpoints for the dashboard
 prisma/schema.prisma          → District, Settlement, HazardSignal, RiskScore /
                              SettlementRiskScore (append-only logs), Alert,
-                             HistoricalDisaster, CitizenReport
+                             HistoricalDisaster, CitizenReport, PushSubscription
 scripts/build-settlements.mjs → one-time data-build: Overpass (OSM) place data,
                              point-in-polygon filtered to Sierra Leone,
                              assigned to the nearest of the 16 districts →
@@ -90,12 +138,16 @@ scripts/build-settlements.mjs → one-time data-build: Overpass (OSM) place data
                              at request time)
 ```
 
-Data model: SQLite via Prisma 7 (`@prisma/adapter-better-sqlite3`) — zero
-external database setup required for a portfolio demo. Swap the adapter for
-Postgres in `lib/prisma.ts` / `prisma.config.ts` for production use.
+Data model: Postgres via Prisma 7 (`@prisma/adapter-pg`) — a free Neon/Supabase
+project is enough, see Quick start. (Earlier versions of this project used
+bundled SQLite for zero-config setup, but Netlify Functions ship a read-only
+deploy bundle with no persistent disk, so writes from a scheduled ingest
+never survived past a single invocation — Postgres is required for the
+"always fresh" data described below.)
 
-For continuous operation, wire `POST /api/ingest` to a scheduler (Vercel Cron,
-GitHub Actions, or any cron) instead of the manual dashboard button.
+Continuous operation: `POST /api/ingest` is wired to
+`.github/workflows/ingest-cron.yml` (GitHub Actions, every 15 min) in addition
+to the manual dashboard button — see "Keeping data fresh automatically" above.
 
 ## Data sources
 

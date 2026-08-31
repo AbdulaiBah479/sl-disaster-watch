@@ -9,22 +9,34 @@ interface IngestSummary {
   sources: { source: string; status: string; itemsFetched: number }[];
 }
 
+interface IngestSkipped {
+  skipped: true;
+  reason: string;
+}
+
 export function RefreshButton() {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const [loading, setLoading] = useState(false);
   const [summary, setSummary] = useState<IngestSummary | null>(null);
+  const [skipped, setSkipped] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   async function handleRefresh() {
     setLoading(true);
     setError(null);
+    setSkipped(null);
     try {
       const res = await fetch("/api/ingest", { method: "POST" });
       if (!res.ok) throw new Error(`Ingestion failed (${res.status})`);
-      const data = (await res.json()) as IngestSummary;
-      setSummary(data);
-      startTransition(() => router.refresh());
+      const data = (await res.json()) as IngestSummary | IngestSkipped;
+      if ("skipped" in data) {
+        setSkipped(data.reason);
+        setSummary(null);
+      } else {
+        setSummary(data);
+        startTransition(() => router.refresh());
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : String(err));
     } finally {
@@ -55,6 +67,7 @@ export function RefreshButton() {
           {summary.totalSignals} signals from {summary.sources.length} sources → {summary.totalRiskScores} risk scores updated
         </p>
       )}
+      {skipped && !busy && <p className="text-right text-xs text-stone-500">{skipped}</p>}
       {error && <p className="text-xs text-red-600">{error}</p>}
     </div>
   );
