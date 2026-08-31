@@ -5,6 +5,7 @@ import { RefreshButton } from "@/components/RefreshButton";
 import { AutoRefresh } from "@/components/AutoRefresh";
 import { MapLoader } from "@/components/MapLoader";
 import { AlertList } from "@/components/AlertList";
+import { OfficialChannels } from "@/components/OfficialChannels";
 import { RisingRiskWatchlist } from "@/components/RisingRiskWatchlist";
 import { StatCard } from "@/components/StatCard";
 import { RiskBarChart } from "@/components/charts/RiskBarChart";
@@ -136,6 +137,9 @@ export default async function DashboardPage() {
           <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted">
             Active Alerts (Warning / Critical)
           </h2>
+          <div className="mb-3">
+            <OfficialChannels />
+          </div>
           <div className="max-h-105 overflow-y-auto pr-1">
             <AlertList alerts={alerts} />
           </div>

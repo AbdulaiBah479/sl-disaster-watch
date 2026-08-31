@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { AlertList } from "@/components/AlertList";
+import { OfficialChannels } from "@/components/OfficialChannels";
 import { HAZARD_LIST, RISK_LEVEL_META, type HazardCategory, type RiskLevel } from "@/lib/hazards";
 
 interface AlertItem {
@@ -93,6 +94,8 @@ export default function AlertsPage() {
           Every active Warning/Critical signal across all districts, cities, towns and areas.
         </p>
       </div>
+
+      <OfficialChannels />
 
       <div className="flex flex-wrap gap-2">
         {LEVELS.map((l) => (

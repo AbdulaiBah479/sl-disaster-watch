@@ -11,6 +11,7 @@ export interface Agency {
   hazardCategories: HazardCategory[] | "ALL";
   website?: string;
   phone?: string;
+  facebook?: string;
   address?: string;
   established?: string;
   sourceUrl: string;
@@ -34,6 +35,7 @@ export const AGENCIES: Agency[] = [
     hazardCategories: "ALL",
     website: "https://ndma.gov.sl",
     phone: "1199 (Africell toll-free public reporting line)",
+    facebook: "https://www.facebook.com/p/National-Disaster-Management-Agency-Sierra-Leone-100071363691472/",
     established: "2020",
     sourceUrl: "https://www.thesierraleonetelegraph.com/sierra-leone-now-has-a-dedicated-national-disaster-management-agency/",
   },

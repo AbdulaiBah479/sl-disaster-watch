@@ -72,6 +72,14 @@ function AgencyCard({ agency }: { agency: Agency }) {
             </a>
           </p>
         )}
+        {agency.facebook && (
+          <p>
+            📘{" "}
+            <a href={agency.facebook} target="_blank" rel="noopener noreferrer" className="underline">
+              Facebook
+            </a>
+          </p>
+        )}
       </div>
 
       <p className="mt-2 text-[11px] text-muted">
