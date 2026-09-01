@@ -16,6 +16,7 @@ import { DISTRICTS, findDistrict } from "@/lib/districts";
 import { scoreToLevel, HAZARD_LIST, type HazardCategory, type RiskLevel } from "@/lib/hazards";
 import { clamp } from "@/lib/geo";
 import type { SourceResult } from "@/lib/sources";
+import type { PtwcStatus } from "@/lib/sources/noaaPtwc";
 import { sendPushForAlerts } from "@/lib/push";
 
 interface ComputedRow {
@@ -68,6 +69,7 @@ export const ELEVATION_SENSITIVE_CATEGORIES = new Set<HazardCategory>(["FLOOD_RI
 
 export async function computeAndPersistRiskScores(
   results: SourceResult[],
+  ptwcStatus?: PtwcStatus,
 ): Promise<ComputedRow[]> {
   const grouped = new Map<
     string,
@@ -124,16 +126,24 @@ export async function computeAndPersistRiskScores(
     });
   }
 
-  // Tsunami is derived, not independently sourced: Sierra Leone sits on a
-  // passive Atlantic continental margin (no subduction zone), so baseline
-  // risk is low; it is driven by the same-run earthquake composite for
-  // coastal districts only, heavily discounted.
+  // Tsunami has two components, blended: a locally-derived heuristic (Sierra
+  // Leone sits on a passive Atlantic continental margin with no subduction
+  // zone, so baseline risk is low; driven by the same-run earthquake
+  // composite for coastal districts, heavily discounted) and — new — a real
+  // live check against NOAA PTWC's public bulletin feed (lib/sources/noaaPtwc.ts).
+  // PTWC only ever pulls the score UP (an active Watch/Advisory/Warning
+  // anywhere basin-relevant), never down, so on the (overwhelming majority
+  // of) runs where nothing is active, behavior is unchanged from before.
   const exposureMapForTsunami = exposureMap;
+  const tsunamiSources = ["DERIVED_FROM_EARTHQUAKE"];
+  if (ptwcStatus?.status === "success") tsunamiSources.push("NOAA_PTWC");
   for (const district of DISTRICTS.filter((d) => d.coastal)) {
     const eqRow = rows.find(
       (r) => r.districtId === district.id && r.category === "EARTHQUAKE",
     );
-    const hazardIntensity = eqRow ? clamp(eqRow.score - 20, 0, 100) * 0.4 : 2;
+    const earthquakeComponent = eqRow ? clamp(eqRow.score - 20, 0, 100) * 0.4 : 2;
+    const hazardIntensity =
+      ptwcStatus?.elevated ? Math.max(earthquakeComponent, ptwcStatus.value) : earthquakeComponent;
     const exposure = exposureMapForTsunami.get(district.id) ?? 50;
     const vulnerability = district.vulnerabilityIndex * 100;
     const score = clamp(
@@ -150,9 +160,11 @@ export async function computeAndPersistRiskScores(
         hazardIntensity: Math.round(hazardIntensity * 10) / 10,
         exposure: Math.round(exposure * 10) / 10,
         vulnerability: Math.round(vulnerability * 10) / 10,
-        sources: ["DERIVED_FROM_EARTHQUAKE"],
+        sources: tsunamiSources,
         notes: [
-          "Sierra Leone sits on a passive Atlantic margin — tsunami risk is low but monitored via regional seismic activity. Consult NOAA PTWC / GDACS for authoritative tsunami warnings.",
+          ptwcStatus?.elevated
+            ? ptwcStatus.summary
+            : "Sierra Leone sits on a passive Atlantic margin — tsunami risk is low but monitored via regional seismic activity and NOAA PTWC's live bulletin feed. Consult NOAA PTWC / GDACS for authoritative tsunami warnings.",
         ],
       }),
     });

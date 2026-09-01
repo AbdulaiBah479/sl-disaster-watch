@@ -172,6 +172,12 @@ lib/push.ts                  → Web Push sender, called from syncAlerts() on
                              every new/escalated Alert; prunes dead subscriptions
 lib/agencies.ts               → real Sierra Leone + international disaster
                              agencies, each source-cited; powers /agencies
+lib/sources/noaaPtwc.ts        → NOAA PTWC's public Atom feed, blended into
+                             TSUNAMI in riskEngine.ts (see Data sources). NDMA
+                             has no public API/feed as of this writing — its
+                             OfficialChannels widget links out directly
+                             instead; wiring in live NDMA data is one new
+                             lib/sources/*.ts module away if that changes.
 lib/auth.ts                   → password hashing (scrypt) + server-side
                              sessions; requireSession()/requireRole()/
                              canAccessDistrict() gate mutating routes
@@ -215,6 +221,7 @@ to the manual dashboard button — see "Keeping data fresh automatically" above.
 |---|---|---|
 | [USGS Earthquake Hazards Program](https://earthquake.usgs.gov/fdsnws/event/1/) | Live seismic events | None |
 | [GDACS](https://www.gdacs.org/) | Earthquake/flood/drought/wildfire/storm alerts for Sierra Leone | None |
+| [NOAA Pacific Tsunami Warning Center](https://www.tsunami.gov/) | Live Atom bulletin feed — genuine Watch/Advisory/Warning anywhere basin-relevant lifts the TSUNAMI score; otherwise reinforces the low earthquake-derived baseline | None |
 | [Open-Meteo Forecast API](https://open-meteo.com/en/docs) | 14-day rainfall, wind gusts | None |
 | [Open-Meteo Historical Weather API](https://open-meteo.com/en/docs/historical-weather-api) | Year-over-year rainfall anomaly (drought) | None |
 | [Open-Meteo Flood API (GloFAS v4)](https://open-meteo.com/en/docs/flood-api) | River discharge vs. seasonal median — the biggest flood-accuracy lever | None |

@@ -11,6 +11,7 @@ const SOURCE_ROWS = [
   { key: "OPEN_METEO_MARINE", label: "Open-Meteo Marine", configured: true },
   { key: "OPEN_METEO_AIR_QUALITY", label: "Open-Meteo Air Quality", configured: true },
   { key: "OPEN_METEO_FLOOD", label: "Open-Meteo Flood (GloFAS)", configured: true },
+  { key: "NOAA_PTWC", label: "NOAA Pacific Tsunami Warning Center", configured: true },
   {
     key: "FIRMS",
     label: "NASA FIRMS Satellite Fire Detection",

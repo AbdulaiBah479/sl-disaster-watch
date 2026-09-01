@@ -4,6 +4,7 @@ import { persistSignals, computeAndPersistRiskScores } from "@/lib/riskEngine";
 import { computeSettlementFloodDroughtRisk } from "@/lib/settlementRiskEngine";
 import { computeAndPersistForecasts, computeAndPersistSettlementForecasts } from "@/lib/predictionEngine";
 import { backfillElevations } from "@/lib/elevationBackfill";
+import { fetchNoaaPtwcStatus } from "@/lib/sources/noaaPtwc";
 
 export interface IngestSummary {
   startedAt: string;
@@ -51,12 +52,12 @@ export async function runIngestionIfDue(): Promise<IngestSummary | IngestSkipped
 export async function runIngestion(): Promise<IngestSummary> {
   const startedAt = new Date();
 
-  const [{ results, floodForecastByPointId, weatherForecastByDistrict }, elevationsBackfilled] =
-    await Promise.all([runAllSources(), backfillElevations()]);
+  const [{ results, floodForecastByPointId, weatherForecastByDistrict }, elevationsBackfilled, ptwcStatus] =
+    await Promise.all([runAllSources(), backfillElevations(), fetchNoaaPtwcStatus()]);
 
   const [totalSignals, riskRows] = await Promise.all([
     persistSignals(results),
-    computeAndPersistRiskScores(results),
+    computeAndPersistRiskScores(results, ptwcStatus),
   ]);
   const { scoresComputed: settlementScoresComputed } = await computeSettlementFloodDroughtRisk();
 
@@ -78,6 +79,14 @@ export async function runIngestion(): Promise<IngestSummary> {
         startedAt,
         finishedAt: new Date(),
       })),
+      {
+        source: "NOAA_PTWC",
+        status: ptwcStatus.status,
+        itemsFetched: ptwcStatus.itemsFetched,
+        message: ptwcStatus.message ?? ptwcStatus.summary,
+        startedAt,
+        finishedAt: new Date(),
+      },
       {
         source: "SETTLEMENT_RISK_ENGINE",
         status: "success",
@@ -115,11 +124,19 @@ export async function runIngestion(): Promise<IngestSummary> {
     settlementScoresComputed,
     forecastsComputed,
     elevationsBackfilled,
-    sources: results.map((r) => ({
-      source: r.source,
-      status: r.status,
-      itemsFetched: r.itemsFetched,
-      message: r.message,
-    })),
+    sources: [
+      ...results.map((r) => ({
+        source: r.source,
+        status: r.status,
+        itemsFetched: r.itemsFetched,
+        message: r.message,
+      })),
+      {
+        source: "NOAA_PTWC",
+        status: ptwcStatus.status,
+        itemsFetched: ptwcStatus.itemsFetched,
+        message: ptwcStatus.message ?? ptwcStatus.summary,
+      },
+    ],
   };
 }
